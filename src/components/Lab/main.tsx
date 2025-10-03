@@ -52,7 +52,7 @@ const modalContentVariants = {
   exit: { scale: 0.8, opacity: 0, y: 50 }
 };
 
-// Inline Reusable ProjectCard (props from data + onClick for modal)
+// Inline Reusable ProjectCard (props from data + onClick for modal - Fixed uniform size)
 const ProjectCard = ({
   project,
   onClick,
@@ -72,27 +72,27 @@ const ProjectCard = ({
     variants={cardVariants}
     whileHover={{ scale: 1.05, y: -5 }}
     onClick={onClick}  // Opens modal with separate page
-    className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer group"
+    className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer group h-[520px] flex flex-col"  // Fixed height + flex for uniformity
   >
     <img
       src={project.image || "https://via.placeholder.com/400x300?text=No+Image"}
       alt={project.title}
-      className="w-full h-48 object-cover rounded-xl mb-4 group-hover:opacity-90 transition-opacity"
+      className="w-full h-48 object-cover rounded-xl mb-4 group-hover:opacity-90 transition-opacity flex-shrink-0"  // Fixed img + no shrink
       loading="lazy"  // Prod perf: Lazy load
       onError={(e) => {
         e.currentTarget.src = "https://via.placeholder.com/400x300?text=No+Image";
       }}
     />
-    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-    <p className="text-gray-300 mb-4 line-clamp-2">{project.shortDesc}</p>
-    <div className="flex flex-wrap gap-2 mb-4">
+    <h3 className="text-xl font-bold text-white mb-2 flex-shrink-0">{project.title}</h3>  // Fixed title (no wrap issues)
+    <p className="text-gray-300 mb-4 line-clamp-2 flex-1">{project.shortDesc}</p>  // Grow to fill space
+    <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
       {project.tech.map((t) => (
         <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">
           {t}
         </span>
       ))}
     </div>
-    <span className="text-xs text-gray-500 block">Date: {project.date}</span>
+    <span className="text-xs text-gray-500 block mt-auto flex-shrink-0">Date: {project.date}</span>  // Bottom-aligned
   </motion.div>
 );
 
@@ -142,15 +142,15 @@ const Lab = () => {
               <Monitor className="mx-auto text-blue-400" size={48} />
             </motion.div>
 
-            {/* Projects Grid (Stagger - Clickable Cards) */}
+            {/* Projects Grid (Stagger - Clickable Cards - Uniform rows) */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr"  // auto-rows-fr for equal heights
             >
               {allProjectsData.map((project) => (
-                <div key={project.id}>
+                <div key={project.id} className="h-full">  // Full height wrapper
                   <ProjectCard project={project} onClick={() => openModal(project)} />
                 </div>
               ))}
