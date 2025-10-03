@@ -12,7 +12,7 @@ export const projectData = {
   shortDesc: "A secure web dashboard for students to access grades, assignments, and announcements.",
   tech: ["React", "Node.js", "MongoDB"],
   date: "2025-02-20",
-  image: "https://images.unsplash.com/photo-1551836022-4d8b3d715f5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External dashboard/school portal thumbnail
+  image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External dashboard/school portal thumbnail
   // Optional for details
   desc: "Built with modern web tech, this portal integrates with school databases for real-time updates. Features user auth, responsive design, and admin panels for teachers.",
   team: ["Student Team A"],

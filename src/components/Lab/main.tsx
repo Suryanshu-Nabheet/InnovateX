@@ -1,27 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Navbar } from "../ui/navbar"; // Correct path from Lab/ to ui/
-import { Monitor } from "lucide-react";
-import { ProjectCard } from "./ProjectsList/main"; // Shared card structure
+import { Navbar } from "../ui/navbar"; // Correct path from Lab/
+import { ProjectCard } from "./ProjectsList/main"; // Import card
 
-// Import project data from each self-contained file (add more as you create TSX)
+// Import project data (thumbnails in own files)
 import { projectData as aiData } from "./Projects/AiStudyBuddy";
 import { projectData as portalData } from "./Projects/SchoolPortal";
-// Add more: import { projectData as cyberData } from "./Projects/CyberGame";
 
-// Collect all project data for list (array for mapping)
-const allProjectsData = [aiData, portalData]; // Add more here (e.g., cyberData)
+// Collect data for list
+const allProjectsData = [aiData, portalData];
 
-// Main Lab Page (List All Projects)
+// Main Lab Page
 const Lab = () => {
   return (
     <div className="min-h-screen bg-black text-white antialiased">
-      <Navbar /> {/* Navbar on list page */}
+      <Navbar />
       <main className="pt-20 md:pt-24">
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="absolute inset-0 opacity-20">
-            {/* Blue theme (matching other pages) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
           </div>
 
@@ -37,13 +34,21 @@ const Lab = () => {
               <motion.p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light mb-8">
                 Discover innovative student-led creations from InnovateX.
               </motion.p>
-              <motion.div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-8" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.5 }} />
+              <motion.div
+                className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-8"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5 }}
+              />
             </motion.div>
 
-            {/* Projects Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {allProjectsData.map((project) => (
-                <Link key={project.id} to={`/lab/projects/${project.slug}`} className="block">
+                <Link
+                  key={project.id}
+                  to={`/lab/projects/${project.slug}`}
+                  className="block"
+                >
                   <ProjectCard project={project} />
                 </Link>
               ))}

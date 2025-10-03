@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Navbar } from "../ui/navbar"; // Adjust path if ui folder differs
+import { Navbar } from "../../ui/navbar"; // Adjust path if ui folder differs
 import { Monitor } from "lucide-react";
 
-// Reusable Project Card (Box Structure for List - No Data Import)
+// Reusable Project Card (uses thumbnail from projectData in own file)
 export const ProjectCard = ({
   project,
 }: {
@@ -47,8 +47,8 @@ export const ProjectCard = ({
 );
 
 // Import project data from each self-contained file (add more as you create TSX)
-import { projectData as aiData } from "./Projects/AiStudyBuddy";
-import { projectData as portalData } from "./Projects/SchoolPortal";
+import { projectData as aiData } from "../Projects/AiStudyBuddy";
+import { projectData as portalData } from "../Projects/SchoolPortal";
 // Add more: import { projectData as cyberData } from "./Projects/CyberGame";
 
 // Collect all project data for list (array for mapping)

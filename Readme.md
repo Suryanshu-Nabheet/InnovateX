@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/Gyan_Niketan.png" alt="InnovateX Logo" width="200"/>
+  <img src="/Public/Gyan_Niketan.png" alt="InnovateX Logo" width="200"/>
   <h3>Transforming Computer Science Education at Gyan Niketan</h3>
   <p>A modern, responsive website for InnovateX, the CS innovation group at Gyan Niketan School.</p>
 </div>
@@ -14,7 +14,6 @@
 
 A responsive, dark-themed website built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion. Features Home (hero/features), About (timeline), Contact (form/map), Leadership (profiles), and Lab (student projects grid/details).
 
-Live Demo: [innovatex.vercel.app](https://innovatex.vercel.app) <!-- Update with your Vercel URL after deploy -->
 
 ## 🚀 Features
 - **Responsive Design**: Mobile-first with glassmorphism, dark mode, and smooth animations (Framer Motion).
@@ -84,25 +83,68 @@ Live Demo: [innovatex.vercel.app](https://innovatex.vercel.app) <!-- Update with
 
 ## 📂 Project Structure
 ```
-InnovateX-main/
-├── public/          # Static assets (images, favicon)
-├── src/
-│   ├── App.tsx      # Main router + routes
-│   ├── components/  # Reusable UI/pages
-│   │   ├── Lab/     # Projects module
-│   │   │   ├── main.tsx     # Lab home (projects list)
-│   │   │   ├── ProjectsList/main.tsx  # Reusable card component
-│   │   │   └── Projects/     # Self-contained projects
-│   │   │       ├── AiStudyBuddy.tsx  # Data export + details component
-│   │   │       └── SchoolPortal.tsx
-│   │   ├── ui/      # Shared UI (Navbar, etc.)
-│   │   └── ...      # Other pages (About, Contact, etc.)
-│   ├── index.css    # Global styles
-│   └── main.tsx     # Entry point
-├── tailwind.config.js  # Tailwind setup
-├── vite.config.ts      # Vite config
-├── vercel.json         # Vercel routing
-└── ...                 # Configs (tsconfig, eslint)
+InnovateX-main
+├─ CONTRIBUTING.md
+├─ LICENSE
+├─ Public
+│  ├─ Features
+│  │  ├─ image-1.png
+│  │  ├─ image-2.jpg
+│  │  ├─ image-3.png
+│  │  ├─ image-4.png
+│  │  ├─ image-5.jpg
+│  │  ├─ image-6.png
+│  │  ├─ image-7.jpg
+│  │  └─ image-8.png
+│  ├─ Gyan_Niketan.png
+│  ├─ Gyan_Niketan_YouTube.png
+│  ├─ Leadership
+│  ├─ Projects_lab.jpg
+│  └─ world.jpg
+├─ Readme.md
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.js
+├─ src
+│  ├─ App.tsx
+│  ├─ components
+│  │  ├─ About
+│  │  │  └─ main.tsx
+│  │  ├─ ConnectivitySection.tsx
+│  │  ├─ Contact
+│  │  │  └─ main.tsx
+│  │  ├─ DotBackground.tsx
+│  │  ├─ Features.tsx
+│  │  ├─ FeaturesSection.tsx
+│  │  ├─ Footer.tsx
+│  │  ├─ Hero.tsx
+│  │  ├─ Lab
+│  │  │  ├─ Projects
+│  │  │  │  ├─ AiStudyBuddy.tsx
+│  │  │  │  └─ SchoolPortal.tsx
+│  │  │  ├─ ProjectsList
+│  │  │  │  └─ main.tsx
+│  │  │  └─ main.tsx
+│  │  ├─ Leadership
+│  │  │  └─ main.tsx
+│  │  └─ ui
+│  │     ├─ navbar.tsx
+│  │     ├─ text-hover-effect.tsx
+│  │     └─ world-map.tsx
+│  ├─ index.css
+│  ├─ lib
+│  │  └─ utils.ts
+│  ├─ main.tsx
+│  └─ vite-env.d.ts
+├─ tailwind.config.js
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ vercel.json
+└─ vite.config.ts
+
 ```
 
 ### Lab Module Details
@@ -150,8 +192,5 @@ MIT License - See [LICENSE](LICENSE) for details. Free for educational/non-comme
 - School: Gyan Niketan, Patna.
 - Contributors: [Add your name!](https://github.com/Suryanshu-Nabheet/InnovateX/graphs/contributors)
 
-<div align="center">
-  <img src="./public/Projects_lab.jpg" alt="Lab Projects Grid" width="600"/>
-</div>
-
 Questions? Open an issue or email suryanshunabheet@gmail.com.
+
