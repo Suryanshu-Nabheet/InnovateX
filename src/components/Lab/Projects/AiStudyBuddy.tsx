@@ -1,97 +1,66 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Navbar } from "../../ui/navbar"; // Correct path from Projects/ to ui/
-import { ArrowLeft, Code, FileText, Link as LinkIcon } from "lucide-react";
 
-// Self-Contained Data (for list cards) - External URL for thumbnail
+// Project Data (for grid box)
 export const projectData = {
-  id: "1",
+  id: "ai-study-buddy",
   slug: "ai-study-buddy",
   title: "AI Study Buddy",
-  shortDesc: "An AI-powered chatbot to help students with homework and coding queries.",
-  tech: ["Python", "TensorFlow", "React"],
-  date: "2025-01-15",
-  image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External AI/chatbot thumbnail
-  // Optional for details (not used in cards)
-  desc: "Developed by Class IX students, this chatbot uses natural language processing to answer questions on math, science, and CS basics. Trained on school curriculum data for personalized learning.",
-  team: ["Suryanshu Nabheet", "Rakshit Ranjan"],
-  codeLink: "https://github.com/Suryanshu-Nabheet/ai-study-buddy",
-  reportLink: "/lab/reports/ai-study-buddy.pdf",
-  demoLink: "https://ai-study-buddy-demo.vercel.app"
-} as const;
+  shortDesc: "Personalized AI tutor that adapts to your learning style with quizzes and explanations.",
+  tech: ["React", "TensorFlow.js", "Node.js", "Python"],
+  date: "2025-03-15",
+  image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80"
+};
 
-// Details Component (Full View - No image, blue theme)
-const AiStudyBuddyDetails = () => {
-  const navigate = useNavigate();
-  const project = projectData; // Use self-contained data
-
+// Separate Full Page (renders in modal - blue theme, sections)
+export const ProjectDetails = () => {
   return (
-    <div className="min-h-screen bg-black text-white antialiased">
-      <Navbar /> {/* Navbar on details */}
-      <main className="pt-20 md:pt-24">
-        <div className="relative max-w-7xl mx-auto px-6 py-20">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
-          </div>
-
-          <div className="relative z-10">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
-              <div className="flex items-center gap-4 mb-8">
-                <button onClick={() => navigate("/lab")} className="flex items-center gap-2 text-blue-400 hover:text-white transition-colors">
-                  <ArrowLeft size={20} /> Back to Projects
-                </button>
-              </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div>
-                  <h1 className="text-3xl font-bold text-white mb-4">{project.title}</h1>
-                  <p className="text-gray-300 mb-6 leading-relaxed">{project.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-gray-600/20 text-gray-300 rounded-full text-sm">
-                      Team: {project.team.join(", ")}
-                    </span>
-                    <span className="px-3 py-1 bg-gray-600/20 text-gray-300 rounded-full text-sm">
-                      Date: {project.date}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    <span className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">Tech Stack</span>
-                    {project.tech.map((t) => (
-                      <span key={t} className="px-3 py-1 bg-gray-600/20 text-gray-300 rounded-full text-sm">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  {/* Custom Section */}
-                  <div className="mt-6 p-4 bg-white/5 rounded-xl">
-                    <h3 className="text-lg font-bold text-white mb-2">How It Works</h3>
-                    <p className="text-gray-300">Chat with the AI for instant help on homework—powered by NLP for personalized responses based on school curriculum.</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-white">Resources</h2>
-                  <div className="space-y-3">
-                    <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                      <Code size={20} className="text-blue-400" />
-                      <span>View Code (GitHub)</span>
-                    </a>
-                    <a href={project.reportLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                      <FileText size={20} className="text-green-400" />
-                      <span>Download Report (PDF)</span>
-                    </a>
-                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                      <LinkIcon size={20} className="text-purple-400" />
-                      <span>Live Demo</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+    <div className="text-white">
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        className="text-3xl font-bold mb-6 text-blue-400"
+      >
+        AI Study Buddy
+      </motion.h1>
+      <img 
+        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80" 
+        alt="AI Study Buddy" 
+        className="w-full h-48 object-cover rounded-xl mb-6" 
+        loading="lazy"
+      />
+      <section className="mb-6">
+        <h2 className="text-xl font-bold mb-3 text-white">Overview</h2>
+        <p className="text-gray-300 leading-relaxed">
+          AI Study Buddy uses machine learning to create custom study plans. It analyzes your quiz performance and suggests resources, making learning interactive and fun. Built for students at Gyan Niketan.
+        </p>
+      </section>
+      <section className="mb-6">
+        <h2 className="text-xl font-bold mb-3 text-white">Tech Stack</h2>
+        <div className="flex flex-wrap gap-2">
+          {["React", "TensorFlow.js", "Node.js", "Python"].map((t) => (
+            <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">
+              {t}
+            </span>
+          ))}
         </div>
-      </main>
+      </section>
+      <section className="mb-6">
+        <h2 className="text-xl font-bold mb-3 text-white">How It Works</h2>
+        <ol className="text-gray-300 space-y-2 list-decimal pl-6">
+          <li>Sign up and take a diagnostic quiz.</li>
+          <li>AI generates personalized flashcards and videos.</li>
+          <li>Track progress with real-time analytics.</li>
+        </ol>
+      </section>
+      <section>
+        <h2 className="text-xl font-bold mb-3 text-white">Resources</h2>
+        <ul className="text-gray-300 space-y-2">
+          <li><a href="https://github.com/ai-study-buddy" className="text-blue-400 hover:underline">GitHub Repo</a></li>
+          <li><a href="https://aistudybuddy.demo" className="text-blue-400 hover:underline">Live Demo</a></li>
+          <li>Tech: TensorFlow.js for browser-based ML.</li>
+        </ul>
+      </section>
     </div>
   );
 };
-
-export default AiStudyBuddyDetails;

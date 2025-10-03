@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 
 // Project Data (for grid box)
 export const projectData = {
-  id: "school-portal",
-  slug: "school-portal",
-  title: "School Portal",
-  shortDesc: "Modern web portal for student attendance, grades, and announcements—streamlining school admin.",
-  tech: ["React", "Firebase", "Tailwind CSS", "TypeScript"],
-  date: "2025-02-20",
+  id: "weather-dashboard",
+  slug: "weather-dashboard",
+  title: "Weather Dashboard",
+  shortDesc: "Real-time weather tracker with forecasts, maps, and alerts—using open APIs for global data.",
+  tech: ["React", "OpenWeatherMap API", "Chart.js", "Tailwind CSS"],
+  date: "2025-03-25",
   image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80"  // Weather theme
 };
 
@@ -21,24 +21,24 @@ export const ProjectDetails = () => {
         animate={{ opacity: 1, y: 0 }} 
         className="text-3xl font-bold mb-6 text-blue-400"
       >
-        School Portal
+        Weather Dashboard
       </motion.h1>
       <img 
-        src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80" 
-        alt="School Portal" 
+        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80" 
+        alt="Weather Dashboard" 
         className="w-full h-48 object-cover rounded-xl mb-6" 
         loading="lazy"
       />
       <section className="mb-6">
         <h2 className="text-xl font-bold mb-3 text-white">Overview</h2>
         <p className="text-gray-300 leading-relaxed">
-          School Portal is a responsive dashboard for teachers and students. Features real-time notifications, secure login, and mobile access—reducing paperwork by 70%.
+          Enter a city to get hourly forecasts, humidity charts, and severe weather notifications. Built to teach API integration and data viz.
         </p>
       </section>
       <section className="mb-6">
         <h2 className="text-xl font-bold mb-3 text-white">Tech Stack</h2>
         <div className="flex flex-wrap gap-2">
-          {["React", "Firebase", "Tailwind CSS", "TypeScript"].map((t) => (
+          {["React", "OpenWeatherMap API", "Chart.js", "Tailwind CSS"].map((t) => (
             <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">
               {t}
             </span>
@@ -48,17 +48,17 @@ export const ProjectDetails = () => {
       <section className="mb-6">
         <h2 className="text-xl font-bold mb-3 text-white">How It Works</h2>
         <ol className="text-gray-300 space-y-2 list-decimal pl-6">
-          <li>Admin logs in to post announcements/grades.</li>
-          <li>Students view personalized dashboards.</li>
-          <li>Firebase syncs data in real-time.</li>
+          <li>Search location via API call.</li>
+          <li>Render interactive charts (temp trends).</li>
+          <li>Push notifications for storms.</li>
         </ol>
       </section>
       <section>
         <h2 className="text-xl font-bold mb-3 text-white">Resources</h2>
         <ul className="text-gray-300 space-y-2">
-          <li><a href="https://github.com/school-portal" className="text-blue-400 hover:underline">GitHub Repo</a></li>
-          <li><a href="https://schoolportal.demo" className="text-blue-400 hover:underline">Live Demo</a></li>
-          <li>Tech: Firebase Auth/Database for backend.</li>
+          <li><a href="https://github.com/weather-dashboard" className="text-blue-400 hover:underline">GitHub Repo</a></li>
+          <li><a href="https://weatherdemo.demo" className="text-blue-400 hover:underline">Live Demo</a></li>
+          <li>Free API key from OpenWeatherMap.</li>
         </ul>
       </section>
     </div>

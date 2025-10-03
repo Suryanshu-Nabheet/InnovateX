@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
-import { Navbar } from './components/ui/navbar'; // Shared Navbar
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Navbar } from './components/ui/navbar'; // Shared Navbar (if needed in Home)
 import { Hero } from './components/Hero';
 import { FeaturesSectionDemo } from './components/FeaturesSection'; // Assuming this exists
 import { Footer } from './components/Footer';
@@ -8,9 +8,7 @@ import { ConnectivitySection } from './components/ConnectivitySection';
 import AboutTimeline from './components/About/main';
 import ContactPage from './components/Contact/main';
 import Leadership from './components/Leadership/main';
-import Lab from './components/Lab/main';
-import AiStudyBuddy from './components/Lab/Projects/AiStudyBuddy';
-import SchoolPortal from './components/Lab/Projects/SchoolPortal';
+import Lab from './components/Lab/main'; // Grid page only
 
 // Error Boundary (Global)
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -52,27 +50,6 @@ function Home() {
   );
 }
 
-// Project Details Wrapper
-const ProjectDetailsWrapper = () => {
-  const { slug } = useParams<{ slug: string }>();
-  switch (slug) {
-    case 'ai-study-buddy':
-      return <AiStudyBuddy />;
-    case 'school-portal':
-      return <SchoolPortal />;
-    default:
-      return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <Navbar />
-          <div className="text-center text-gray-400 p-20">
-            <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-            <Navigate to="/lab" replace />
-          </div>
-        </div>
-      );
-  }
-};
-
 function App() {
   return (
     <ErrorBoundary>
@@ -80,11 +57,10 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutTimeline />} /> {/* Ensure Navbar in component */}
-            <Route path="/contact" element={<ContactPage />} /> {/* Ensure Navbar in component */}
-            <Route path="/leadership" element={<Leadership />} /> {/* Ensure Navbar in component */}
-            <Route path="/lab" element={<Lab />} />
-            <Route path="/lab/projects/:slug" element={<ProjectDetailsWrapper />} />
+            <Route path="/about" element={<AboutTimeline />} /> {/* Navbar in component */}
+            <Route path="/contact" element={<ContactPage />} /> {/* Navbar in component */}
+            <Route path="/leadership" element={<Leadership />} /> {/* Navbar in component */}
+            <Route path="/lab" element={<Lab />} /> {/* Grid only - no details */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
