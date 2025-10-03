@@ -62,10 +62,10 @@ const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       >
         <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-blue-500/20"> {/* Subtle blue glow container */}
           <motion.h2 
-            className="text-lg md:text-5xl lg:text-6xl mb-6 font-bold max-w-4xl mx-auto bg-gradient-to-r from-white via-white to-blue-400 bg-clip-text text-transparent tracking-wide" // Blue-white gradient text
-            whileHover={{ scale: 1.02 }} // Subtle hover
+            className="text-lg md:text-5xl lg:text-6xl mb-6 font-bold max-w-4xl mx-auto tracking-wide"
+            whileHover={{ scale: 1.02 }}
           >
-            Computer Science
+            <span className="text-blue-500">Computer Science</span>
           </motion.h2>
           <motion.p 
             className="text-blue-300 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed font-light" // Light blue for premium feel

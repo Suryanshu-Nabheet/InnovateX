@@ -28,8 +28,9 @@ const Lab = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-20"
             >
-              <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-blue-400 bg-clip-text text-transparent tracking-wide">
-                Our CS Lab Projects
+              <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-wide">
+                <span className="text-white">Our CS</span>{" "}
+                <span className="text-blue-400">Lab Projects</span>
               </motion.h1>
               <motion.p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light mb-8">
                 Discover innovative student-led creations from InnovateX.

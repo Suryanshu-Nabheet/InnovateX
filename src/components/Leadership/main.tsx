@@ -4,16 +4,16 @@ import { Navbar } from "../ui/navbar"; // Relative path to navbar
 import { Users, GraduationCap } from "lucide-react"; // Icons for sections (Mail removed)
 
 // Profile Card Component (Updated: No Image, Text-Focused Layout)
-const ProfileCard = ({ 
-  name, 
-  role, 
-  bio, 
-  className = "" 
-}: { 
-  name: string; 
-  role: string; 
-  bio: string; 
-  className?: string; 
+const ProfileCard = ({
+  name,
+  role,
+  bio,
+  className = "",
+}: {
+  name: string;
+  role: string;
+  bio: string;
+  className?: string;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,9 @@ const Leadership = () => {
   return (
     <div className="min-h-screen bg-black text-white antialiased">
       <Navbar /> {/* Navbar for consistency */}
-      <main className="pt-20 md:pt-24"> {/* Top padding to avoid navbar overlap */}
+      <main className="pt-20 md:pt-24">
+        {" "}
+        {/* Top padding to avoid navbar overlap */}
         {/* Main Content with Blue Blob Background (like other pages) */}
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="absolute inset-0 opacity-20">
@@ -50,21 +52,25 @@ const Leadership = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="text-center mb-20"
             >
-              <motion.h1 
-                className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-blue-400 bg-clip-text text-transparent tracking-wide"
+              <motion.h1
+                className="text-4xl md:text-6xl font-bold mb-6 tracking-wide"
                 whileHover={{ scale: 1.02 }}
               >
-                Our Leaders
+                <span className="text-white">Our </span>
+                <span className="text-blue-500">Leaders</span>
               </motion.h1>
-              <motion.p 
+
+              <motion.p
                 className="text-blue-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
-                Meet the visionary leaders of Gyan Niketan School and the passionate alumni leaders of InnovateX. Their dedication shapes the future of computer science education.
+                Meet the visionary leaders of Gyan Niketan School and the
+                passionate alumni leaders of InnovateX. Their dedication shapes
+                the future of computer science education.
               </motion.p>
-              <motion.div 
+              <motion.div
                 className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-6"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -80,10 +86,14 @@ const Leadership = () => {
                 className="flex items-center gap-4 mb-8"
               >
                 <Users className="text-blue-400" size={32} />
-                <h2 className="text-3xl font-bold text-white">School Leaders & Visionaries</h2>
+                <h2 className="text-3xl font-bold text-white">
+                  School Leaders & Visionaries
+                </h2>
               </motion.div>
               <p className="text-gray-400 text-lg max-w-4xl mx-auto mb-12 text-center">
-                The esteemed leadership of Gyan Niketan, guiding the institution with expertise in education, administration, and holistic development.
+                The esteemed leadership of Gyan Niketan, guiding the institution
+                with expertise in education, administration, and holistic
+                development.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <ProfileCard
@@ -127,10 +137,14 @@ const Leadership = () => {
                 className="flex items-center gap-4 mb-8"
               >
                 <GraduationCap className="text-blue-400" size={32} />
-                <h2 className="text-3xl font-bold text-white">InnovateX Alumni Leaders</h2>
+                <h2 className="text-3xl font-bold text-white">
+                  InnovateX Alumni Leaders
+                </h2>
               </motion.div>
               <p className="text-gray-400 text-lg max-w-4xl mx-auto mb-12 text-center">
-                The trailblazing alumni who lead InnovateX, our CS innovation group. As former students, they continue to inspire through leadership and community impact.
+                The trailblazing alumni who lead InnovateX, our CS innovation
+                group. As former students, they continue to inspire through
+                leadership and community impact.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <ProfileCard

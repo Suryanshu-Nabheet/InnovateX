@@ -14,7 +14,7 @@ export const projectData = {
   date: "2025-01-15",
   image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External AI/chatbot thumbnail
   // Optional for details (not used in cards)
-  desc: "Developed by Class XII students, this chatbot uses natural language processing to answer questions on math, science, and CS basics. Trained on school curriculum data for personalized learning.",
+  desc: "Developed by Class IX students, this chatbot uses natural language processing to answer questions on math, science, and CS basics. Trained on school curriculum data for personalized learning.",
   team: ["Suryanshu Nabheet", "Rakshit Ranjan"],
   codeLink: "https://github.com/Suryanshu-Nabheet/ai-study-buddy",
   reportLink: "/lab/reports/ai-study-buddy.pdf",
