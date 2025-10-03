@@ -174,7 +174,7 @@ export function Hero() {
 
         <div className="flex justify-center w-full">
           <motion.a
-            href="#about"
+            href="/lab"
             className="group relative px-8 py-4 bg-transparent border-2 border-[#0000FF] text-white rounded-lg font-semibold text-lg flex items-center justify-center gap-2 overflow-hidden mx-auto"
             aria-label="Explore Our Lab"
             whileHover={{ scale: 1.05 }}

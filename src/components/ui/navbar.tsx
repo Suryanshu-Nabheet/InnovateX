@@ -9,12 +9,13 @@ export function Navbar() {
   const location = useLocation();
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  // Reordered to match desktop: Home, About, Contacts, Leadership, Lab (fixes About pairing/flow)
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
     { to: "/about", label: "About", icon: Info },
-    { to: "/lab", label: "Lab", icon: Users }, // New
     { to: "/contact", label: "Contacts", icon: Mail },
     { to: "/leadership", label: "Leadership", icon: Users },
+    { to: "/lab", label: "Lab", icon: Users }, // Users icon for Lab (or swap to Code/Monitor if imported)
   ];
 
   useEffect(() => {
