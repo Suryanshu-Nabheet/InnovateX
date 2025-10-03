@@ -23,6 +23,6 @@ export default defineConfig({
     minify: 'terser' // Aggressive minification
   },
   optimizeDeps: {
-    include: ['lucide-react'] // Pre-bundle for faster HMR
+    include: ['lucide-react', 'framer-motion']  // Pre-bundle anims for HMR speed
   }
 });
