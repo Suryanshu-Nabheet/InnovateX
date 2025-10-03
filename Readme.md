@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/Public/Gyan_Niketan.png?raw=true" alt="InnovateX Logo" width="200" height="200" />
+  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/public/Gyan_Niketan.png?raw=true" alt="InnovateX Logo" width="200" height="200" />
   <h1 style="background: linear-gradient(90deg, #000000 0%, #0000FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3rem; margin: 0;">InnovateX</h1>
   <p style="color: #A0A0A0; font-size: 1.2rem; margin: 0;">Transforming Computer Science Education at Gyan Niketan</p>
   <p style="color: #6B7280; font-size: 1.1rem;">A cutting-edge, student-led innovation hub powering the next generation of tech leaders. Built for collaboration, creativity, and open source impact.</p>
@@ -31,7 +31,7 @@ This repository powers our official website—a sleek, responsive platform showc
 - **Why Open Source?**: Share our modular Lab system (self-contained projects) to inspire global schools. Fork, contribute, deploy—make InnovateX your own!
 
 <div align="center">
-  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/Public/Projects_lab.jpg?raw=true" alt="Lab Projects Grid" width="800" />
+  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/public/Projects_lab.jpg?raw=true" alt="Lab Projects Grid" width="800" />
   <p><em>Dynamic Lab Projects Grid – Hover for Magic ✨</em></p>
 </div>
 
@@ -49,7 +49,7 @@ This repository powers our official website—a sleek, responsive platform showc
 - **Tech Highlights**: GPU-accelerated animations, responsive (mobile hamburger Navbar), SEO-friendly (meta tags in index.html).
 
 <div align="center">
-  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/Public/world.jpg?raw=true" alt="Global Impact" width="800" />
+  <img src="https://github.com/Suryanshu-Nabheet/InnovateX/blob/main/public/world.jpg?raw=true" alt="Global Impact" width="800" />
   <p><em>Connectivity Section – Visualizing Our Global Reach 🌍</em></p>
 </div>
 
