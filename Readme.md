@@ -167,37 +167,66 @@ For production preview: `npm run build && npm run preview` (localhost:4173).
 A clean, modular monorepo for scalability:
 
 ```
-InnovateX/
-├── public/                 # Static assets (images, icons)
-│   ├── Gyan_Niketan.png    # Navbar logo
-│   ├── Projects_lab.jpg    # Lab hero
-│   └── world.jpg           # Connectivity map
-├── src/
-│   ├── components/         # Reusable UI & Pages
-│   │   ├── About/main.tsx  # CS Timeline (Framer scroll effects)
-│   │   ├── Hero.tsx        # Home hero (dots bg, blue button)
-│   │   ├── Lab/
-│   │   │   ├── main.tsx    # Lab page (Navbar + grid)
-│   │   │   ├── ProjectsList/main.tsx  # ProjectCard component
-│   │   │   └── Projects/   # Self-contained projects
-│   │   │       ├── AiStudyBuddy.tsx  # Data + details JSX
-│   │   │       └── SchoolPortal.tsx
-│   │   ├── Leadership/main.tsx  # Team profiles
-│   │   ├── Contact/main.tsx     # Form + map
-│   │   └── ui/
-│   │       ├── navbar.tsx       # Fixed top bar (mobile overlay)
-│   │       └── ...              # Icons, effects
-│   ├── App.tsx                 # Routes + ErrorBoundary
-│   ├── main.tsx                # Root (AnimatePresence for transitions)
-│   └── index.css               # Tailwind + custom (GPU smoothness)
-├── .gitignore                 # Node modules, dist
-├── CONTRIBUTING.md            # Guidelines
-├── LICENSE                    # MIT
-├── package.json               # Deps & scripts
-├── tailwind.config.js         # Blue/black theme
-├── tsconfig.json              # TypeScript strict
-├── vercel.json                # Deployment config
-└── vite.config.ts             # Builds, aliases (@ for src/)
+InnovateX-main
+├─ CONTRIBUTING.md
+├─ LICENSE
+├─ Readme.md
+├─ eslint.config.js
+├─ index.html
+├─ package-lock.json
+├─ package.json
+├─ postcss.config.js
+├─ public
+│  ├─ Features
+│  │  ├─ image-1.png
+│  │  ├─ image-2.jpg
+│  │  ├─ image-3.png
+│  │  ├─ image-4.png
+│  │  ├─ image-5.jpg
+│  │  ├─ image-6.png
+│  │  ├─ image-7.jpg
+│  │  └─ image-8.png
+│  ├─ Gyan_Niketan.png
+│  ├─ Gyan_Niketan_YouTube.png
+│  ├─ Leadership
+│  ├─ Projects_lab.jpg
+│  └─ world.jpg
+├─ src
+│  ├─ App.tsx
+│  ├─ components
+│  │  ├─ About
+│  │  │  └─ main.tsx
+│  │  ├─ ConnectivitySection.tsx
+│  │  ├─ Contact
+│  │  │  └─ main.tsx
+│  │  ├─ DotBackground.tsx
+│  │  ├─ Features.tsx
+│  │  ├─ FeaturesSection.tsx
+│  │  ├─ Footer.tsx
+│  │  ├─ Hero.tsx
+│  │  ├─ Lab
+│  │  │  ├─ Projects
+│  │  │  │  └─ main.tsx
+│  │  │  ├─ main.tsx
+│  │  │  └─ projects.json
+│  │  ├─ Leadership
+│  │  │  └─ main.tsx
+│  │  └─ ui
+│  │     ├─ navbar.tsx
+│  │     ├─ text-hover-effect.tsx
+│  │     └─ world-map.tsx
+│  ├─ index.css
+│  ├─ lib
+│  │  └─ utils.ts
+│  ├─ main.tsx
+│  └─ vite-env.d.ts
+├─ tailwind.config.js
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ vercel.json
+└─ vite.config.ts
+
 ```
 
 - **Core Flow**: `main.tsx` → `App.tsx` (Routes) → Components (pages with Navbar).

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion"; // For smooth mobile menu animations
-import { Menu, X, Facebook, Home, Info, Mail, Users } from "lucide-react"; // Added icons for mobile menu (professional touch)
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Facebook, Home, Info, Mail, Users } from "lucide-react";
 
 // Navbar Component (Mobile: Full overlay, professional redesign)
 export function Navbar() {
@@ -188,7 +188,7 @@ export function NavbarLogoMobile() {
   return (
     <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200">
       <img
-        src="/Public/Gyan_Niketan.png"
+        src="/Gyan_Niketan.png"  // Fixed: Removed /public/ prefix
         alt="Gyan Niketan"
         className="w-8 h-8 rounded-lg object-contain drop-shadow-lg" // Smaller on mobile
       />
@@ -211,7 +211,7 @@ export function NavbarLogo() {
         className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200"
       >
         <img
-          src="/Public/Gyan_Niketan.png"
+          src="/Gyan_Niketan.png"  // Fixed: Removed /public/ prefix
           alt="Gyan Niketan"
           className="w-10 h-10 md:w-11 md:h-11 rounded-lg object-contain drop-shadow-lg"
         />

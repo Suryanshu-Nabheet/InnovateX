@@ -31,12 +31,12 @@ const TextHoverEffect = ({
       ref={svgRef}
       width="100%"
       height="100%"
-      viewBox="0 0 300 100"
+      viewBox="0 0 600 180" // Increased viewBox for larger text accommodation
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none"
+      className="select-none max-w-full" // Prevents overflow, responsive scaling
     >
       <defs>
         {/* Main colorful gradient */}
@@ -84,11 +84,11 @@ const TextHoverEffect = ({
       {/* Base stroke text (faded on hover) */}
       <text
         x="50%"
-        y="50%"
+        y="60%" // Slightly adjusted y-position for better centering
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
+        className="fill-transparent stroke-neutral-200 font-[helvetica] text-8xl font-bold dark:stroke-neutral-800" // Increased to text-8xl for much larger size
         style={{ opacity: hovered ? 0.7 : 0 }}
       >
         {text}
@@ -97,11 +97,11 @@ const TextHoverEffect = ({
       {/* Animated stroke text (draw effect) */}
       <motion.text
         x="50%"
-        y="50%"
+        y="60%"
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[helvetica] text-7xl font-bold dark:stroke-neutral-800"
+        className="fill-transparent stroke-neutral-200 font-[helvetica] text-8xl font-bold dark:stroke-neutral-800" // Increased to text-8xl
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -118,13 +118,13 @@ const TextHoverEffect = ({
       {/* Main gradient text with mask */}
       <text
         x="50%"
-        y="50%"
+        y="60%"
         textAnchor="middle"
         dominantBaseline="middle"
         stroke="url(#textGradient)"
         strokeWidth="0.3"
         mask="url(#textMask)"
-        className="fill-transparent font-[helvetica] text-7xl font-bold"
+        className="fill-transparent font-[helvetica] text-8xl font-bold" // Increased to text-8xl
       >
         {text}
       </text>
@@ -139,8 +139,8 @@ export default TextHoverEffect; // Default for other uses
 // Demo component
 export function TextHoverEffectWrapper() {
   return (
-    <div className="h-[40rem] flex items-center justify-center bg-neutral-950">
-      <TextHoverEffect text="ACET" />
+    <div className="h-[40rem] flex items-center justify-center bg-transparent px-6"> {/* Increased height for larger text; added more padding for mobile */}
+      <TextHoverEffect text="InnovateX" />
     </div>
   );
 }

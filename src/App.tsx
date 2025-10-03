@@ -9,6 +9,7 @@ import AboutTimeline from './components/About/main';
 import ContactPage from './components/Contact/main';
 import Leadership from './components/Leadership/main';
 import Lab from './components/Lab/main'; // Grid page only
+import { TextHoverEffectWrapper } from './components/ui/text-hover-effect'; // Added import for hover effect
 
 // Error Boundary (Global)
 class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -44,6 +45,7 @@ function Home() {
         <Hero />
         <ConnectivitySection />
         <FeaturesSectionDemo />
+        <TextHoverEffectWrapper /> {/* Added text hover effect before footer */}
         <Footer />
       </main>
     </div>

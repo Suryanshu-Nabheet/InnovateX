@@ -145,7 +145,7 @@ export const SkeletonOne = () => {
       <div className="w-full p-5 mx-auto bg-gray-800 shadow-2xl group h-full rounded-lg">
         <div className="flex flex-1 w-full h-full flex-col space-y-2">
           <img
-            src="/Public/Projects_lab.jpg"
+            src="/Projects_lab.jpg"  // Fixed: Removed /public/ prefix
             alt="Students collaborating on open source tech projects in a classroom setting"
             width={800}
             height={800}
@@ -182,7 +182,7 @@ export const SkeletonThree = () => {
           {/* YouTube icon: Centered, absolute positioning, red color for branding. */}
           <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto" />
           <img
-            src="/Public/Gyan_Niketan_YouTube.png"
+            src="/Gyan_Niketan_YouTube.png"  // Fixed: Removed /public/ prefix
             alt="Gyan Niketan YouTube channel logo"
             width={800}
             height={800}
@@ -207,32 +207,32 @@ export const SkeletonThree = () => {
 export const SkeletonTwo = () => {
   // First row images - AI and Robotics focused
   const firstRowImages = [
-    "/Public/Features/image-1.png",     // AI learning systems
-    "/Public/Features/image-2.jpg",     // Robotics lab
-    "/Public/Features/image-3.png", 
-    "/Public/Features/image-4.png",
-    "/Public/Features/image-5.jpg",     // Students with robots
-    "/Public/Features/image-7.jpg",     // Coding workshop
+    "/Features/image-1.png",     // Fixed: Removed /public/ prefix
+    "/Features/image-2.jpg",     // Fixed: Removed /public/ prefix
+    "/Features/image-3.png",     // Fixed: Removed /public/ prefix
+    "/Features/image-4.png",     // Fixed: Removed /public/ prefix
+    "/Features/image-5.jpg",     // Fixed: Removed /public/ prefix
+    "/Features/image-7.jpg",     // Fixed: Removed /public/ prefix
   ];
 
   // Second row images - Programming and Development
   const secondRowImages = [
-    "/Public/Features/image-7.jpg",    // Coding workshop
-    "/Public/Features/image-8.png",   // Web development
-    "/Public/Features/image-5.jpg", 
-   "/Public/Features/image-1.png",    // Mobile app development
-   "/Public/Features/image-2.jpg",    // Mobile app development
-    "/Public/Features/image-4.png",
+    "/Features/image-7.jpg",    // Fixed: Removed /public/ prefix
+    "/Features/image-8.png",   // Fixed: Removed /public/ prefix
+    "/Features/image-5.jpg",   // Fixed: Removed /public/ prefix
+   "/Features/image-1.png",    // Fixed: Removed /public/ prefix
+   "/Features/image-2.jpg",    // Fixed: Removed /public/ prefix
+    "/Features/image-4.png",    // Fixed: Removed /public/ prefix
   ];
 
   // Third row images - Innovation and Future Tech
   const thirdRowImages = [
-    "/Public/Features/image-5.jpg",  // VR/AR technology
-    "/Public/Features/image-6.png",   // IoT devices
-    "/Public/Features/image-2.jpg",   // Blockchain
-    "/Public/Features/image-1.png",   // AI learning systems
-    "/Public/Features/image-4.png",   // Cloud computing
-    "/Public/Features/image-8.png",   // Web development
+    "/Features/image-5.jpg",  // Fixed: Removed /public/ prefix
+    "/Features/image-6.png",   // Fixed: Removed /public/ prefix
+    "/Features/image-2.jpg",   // Fixed: Removed /public/ prefix
+    "/Features/image-1.png",   // Fixed: Removed /public/ prefix
+    "/Features/image-4.png",   // Fixed: Removed /public/ prefix
+    "/Features/image-8.png",   // Fixed: Removed /public/ prefix
   ];
 
   const imageVariants = {
