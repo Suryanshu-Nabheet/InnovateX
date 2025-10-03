@@ -5,12 +5,14 @@
     "shortDesc": "Personalized AI tutor that adapts to your learning style with quizzes and explanations.",
     "tech": ["React", "TensorFlow.js", "Node.js", "Python"],
     "date": "2025-03-15",
-    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "image": "https://www.usmsystems.com/wp-content/uploads/2020/09/119226200_665027644365313_4663085420677003994_n.jpg",
     "details": [
       "Uses machine learning to create custom study plans based on quiz performance.",
-      "Analyzes learning style and suggests interactive resources like flashcards.",
-      "Real-time progress tracking with analytics dashboard for students.",
-      "Integrates TensorFlow.js for browser-based AI without server dependency."
+      "Analyzes learning style and suggests interactive resources like flashcards and videos.",
+      "Real-time progress tracking with analytics dashboard for students at Gyan Niketan.",
+      "Integrates TensorFlow.js for browser-based AI without server dependency.",
+      "Supports multiple subjects with adaptive difficulty levels.",
+      "Exports reports as PDF for teachers to review student growth."
     ]
   },
   {
@@ -19,12 +21,14 @@
     "shortDesc": "Modern web portal for student attendance, grades, and announcements—streamlining school admin.",
     "tech": ["React", "Firebase", "Tailwind CSS", "TypeScript"],
     "date": "2025-02-20",
-    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLTyAutqWXgstJyfD1A6tAXpYuVNGpUeIi22v91wsg9A&s=10",
     "details": [
       "Responsive dashboard for teachers to post grades and announcements securely.",
       "Students access personalized views with real-time notifications via Firebase.",
-      "Reduces paperwork by 70% with mobile-friendly attendance tracking.",
-      "Uses TypeScript for type-safe code and Tailwind for rapid styling."
+      "Reduces paperwork by 70% with mobile-friendly attendance tracking and QR scans.",
+      "Uses TypeScript for type-safe code and Tailwind for rapid, consistent styling.",
+      "Role-based access: Admins manage users, parents view reports.",
+      "Integrates email/SMS alerts for low grades or absences."
     ]
   },
   {
@@ -36,9 +40,11 @@
     "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
     "details": [
       "Search any city for hourly forecasts and interactive temperature charts.",
-      "Integrates OpenWeatherMap API for accurate global data and alerts.",
-      "Visualizes trends with Chart.js for humidity, wind, and precipitation.",
-      "Push notifications for severe weather—built for API learning and data viz."
+      "Integrates OpenWeatherMap API for accurate global data and severe weather alerts.",
+      "Visualizes trends with Chart.js for humidity, wind, and precipitation patterns.",
+      "Push notifications for storms or temperature extremes via browser alerts.",
+      "Map integration with Leaflet for location-based forecasts.",
+      "Historical data comparison to track climate changes over time."
     ]
   },
   {
@@ -47,12 +53,14 @@
     "shortDesc": "AI-powered school helper for queries on schedules, homework, and resources—conversational interface.",
     "tech": ["JavaScript", "Dialogflow", "React", "WebSockets"],
     "date": "2025-05-05",
-    "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "image": "https://imageio.forbes.com/specials-images/imageserve/64c2d5d97f8b3786fc03e3c3/AI-Technology-Innovation-concept/960x0.jpg?height=399&width=711&fit=bounds",
     "details": [
       "Conversational UI for instant answers on homework and school schedules.",
-      "Dialogflow handles NLP to process queries and integrate with calendars.",
-      "Real-time responses via WebSockets for seamless chat experience.",
-      "Trained on FAQs—ideal for student support without human intervention."
+      "Dialogflow handles NLP to process queries and integrate with school calendars.",
+      "Real-time responses via WebSockets for seamless, lag-free chat experience.",
+      "Trained on FAQs and resources—ideal for student support without human intervention.",
+      "Multi-language support for diverse student queries.",
+      "Logs interactions for admins to improve bot accuracy over time."
     ]
   }
 ]
