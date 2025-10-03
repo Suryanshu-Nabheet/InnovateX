@@ -12,6 +12,7 @@ export function Navbar() {
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
     { to: "/about", label: "About", icon: Info },
+    { to: "/lab", label: "Lab", icon: Users }, // New
     { to: "/contact", label: "Contacts", icon: Mail },
     { to: "/leadership", label: "Leadership", icon: Users },
   ];
@@ -82,6 +83,16 @@ export function Navbar() {
               }`}
             >
               Leadership
+            </Link>
+            <Link
+              to="/lab"
+              className={`text-gray-200 hover:text-white text-sm font-medium transition-all duration-300 hover:scale-105 relative ${
+                isActive("/lab")
+                  ? "text-blue-400 after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-blue-400 after:rounded"
+                  : ""
+              }`}
+            >
+              Lab
             </Link>
 
             <div className="w-px h-5 bg-white/30"></div>

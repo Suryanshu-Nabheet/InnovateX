@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-export const TextHoverEffect = ({
+const TextHoverEffect = ({
   text,
   duration,
 }: {
@@ -132,8 +132,12 @@ export const TextHoverEffect = ({
   );
 };
 
+// Named export for App.tsx
+export const TextHoverEffectDemo = TextHoverEffect;
+export default TextHoverEffect; // Default for other uses
+
 // Demo component
-export default function TextHoverEffectDemo() {
+export function TextHoverEffectWrapper() {
   return (
     <div className="h-[40rem] flex items-center justify-center bg-neutral-950">
       <TextHoverEffect text="ACET" />

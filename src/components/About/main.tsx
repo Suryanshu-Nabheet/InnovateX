@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
-import { Navbar } from "../ui/navbar";
-import { Cpu, Code, Monitor, Database, Globe, Smartphone, Brain, Cloud, Zap, Bot, Headset, Leaf, Lock, BookOpen, GraduationCap, Users, Calendar } from "lucide-react"; // Small icons like Contact (added extras for details)
+import { Navbar } from '../ui/navbar'; // Adjust path
 
 // Inlined Timeline Component (self-contained)
 interface TimelineEntry {

@@ -1,159 +1,157 @@
+<div align="center">
+  <img src="./public/Gyan_Niketan.png" alt="InnovateX Logo" width="200"/>
+  <h3>Transforming Computer Science Education at Gyan Niketan</h3>
+  <p>A modern, responsive website for InnovateX, the CS innovation group at Gyan Niketan School.</p>
+</div>
+
+[![React](https://img.shields.io/badge/React-18%2B-blue?logo=react)](https://reactjs.org)
+[![Vite](https://img.shields.io/badge/Vite-Fast%20Builds-orange?logo=vite)](https://vitejs.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-blue?logo=tailwind)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)](https://typescriptlang.org)
+[![Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel)](https://vercel.com)
+
 # InnovateX - Gyan Niketan CS Community Website
 
-A modern, responsive website for InnovateX, the Computer Science innovation group at Gyan Niketan School. Built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion for smooth animations. Features pages for Home, About, Contact, and Leadership.
+A responsive, dark-themed website built with React, TypeScript, Vite, Tailwind CSS, and Framer Motion. Features Home (hero/features), About (timeline), Contact (form/map), Leadership (profiles), and Lab (student projects grid/details).
 
- <div align="center">
-  <img src="./Public/Gyan_Niketan.png" alt="InnovateX Logo" width="200"/>
-  <h3>Transforming Computer Science Education</h3>
-</div>-- Replace with real screenshot if available -->
+Live Demo: [innovatex.vercel.app](https://innovatex.vercel.app) <!-- Update with your Vercel URL after deploy -->
 
 ## 🚀 Features
-- **Responsive Design**: Mobile-first (works on phones, tablets, desktops) with glassmorphism effects and dark theme.
-- **Pages**: Home (hero, features), About (timeline), Contact (details + map), Leadership (profiles).
-- **Tech Stack**: React 18+, TypeScript, Vite (fast builds), Tailwind CSS (styling), Lucide React (icons), Framer Motion (animations), React Router (SPA navigation).
-- **Deployment-Ready**: Optimized for Vercel (static hosting, auto-deploys from GitHub).
-
-Live Demo: [https://your-vercel-app.vercel.app](https://your-vercel-app.vercel.app) <!-- Update after deployment -->
+- **Responsive Design**: Mobile-first with glassmorphism, dark mode, and smooth animations (Framer Motion).
+- **Pages & Routes**:
+  - `/`: Home (hero, connectivity, features, text effects, footer).
+  - `/about`: Timeline of InnovateX history.
+  - `/contact`: Contact details + interactive map.
+  - `/leadership`: Team profiles.
+  - `/lab`: Projects list (grid cards). `/lab/projects/:slug`: Project details (self-contained per project).
+- **Lab Module**: Modular student projects—no central JSON. Each project in `src/components/Lab/Projects/*.tsx` (data for cards + full details with custom sections like "How It Works").
+- **Tech Stack**: React 18+, TypeScript, Vite (dev/build), Tailwind CSS (styling), Lucide React (icons), Framer Motion (animations), React Router (SPA navigation).
+- **Performance**: Optimized builds (~1-2MB), lazy-loading ready, Vercel CDN.
+- **Accessibility**: Semantic HTML, alt texts, keyboard nav (Navbar).
 
 ## 📋 Prerequisites
-Before setup, ensure you have:
-- **Node.js**: v18+ (LTS recommended). Download from [nodejs.org](https://nodejs.org).
-- **npm** or **yarn**: Comes with Node.js (use `npm -v` to check).
-- **Git**: For version control. Download from [git-scm.com](https://git-scm.com).
-- **GitHub Account**: For repo hosting (free).
-- **Vercel Account**: Free tier at [vercel.com](https://vercel.com) (sign up with GitHub).
-
-No additional tools needed—Vite handles everything.
+- Node.js v18+ (LTS): [nodejs.org](https://nodejs.org)
+- npm/yarn: Included with Node.
+- Git: [git-scm.com](https://git-scm.com)
+- GitHub/Vercel accounts: For hosting (free).
 
 ## 🛠️ Installation & Local Setup
-1. **Clone the Repository**:
+1. **Clone Repo**:
    ```bash
-   git clone https://github.com/Suryanshu-Nabheet/InnovateX.git  # Replace with your repo URL
+   git clone https://github.com/Suryanshu-Nabheet/InnovateX.git
    cd InnovateX
    ```
 
 2. **Install Dependencies**:
    ```bash
-   npm install  # Or yarn install
+   npm install
    ```
-   This installs React, Vite, Tailwind, and other packages from `package.json`.
 
-3. **Run Development Server**:
+3. **Run Dev Server**:
    ```bash
-   npm run dev  # Starts at http://localhost:5173 (Vite default)
+   npm run dev
    ```
-   - Open [http://localhost:5173](http://localhost:5173) in your browser.
-   - Hot reload: Changes auto-update without refresh.
-   - Test routes: Navigate to `/about`, `/contact`, `/leadership`.
+   - Opens [http://localhost:5173](http://localhost:5173).
+   - Hot reload enabled. Test: Navigate `/lab` → Click project → Details.
 
-4. **Environment Setup (Optional)**:
-   - No `.env` needed (no API keys). If adding later (e.g., for email), create `.env` and add to `.gitignore`.
+4. **Optional Tools**:
+   - Linting/Formatting: `npm install --save-dev eslint prettier` → Add scripts below.
+   - Testing: `npm install --save-dev vitest @testing-library/react` → Run `npm test`.
 
 ## 🔧 Development Workflow
-- **Edit Code**: Files in `/src/` (e.g., `App.tsx`, components in `/src/components/`).
-- **Styling**: Tailwind classes (e.g., `bg-black text-white`). No separate CSS files needed.
-- **TypeScript**: Strict typing—errors show in VS Code/terminal.
-- **Testing**: No unit tests yet. Add with `npm install --save-dev vitest @testing-library/react`.
-- **Linting/Formatting**: Run `npm run lint` if ESLint added (optional: `npm install --save-dev eslint`).
+- **Code Location**: `/src/` (App.tsx for routes, `/components/` for pages/UI).
+- **Styling**: Tailwind classes (e.g., `bg-black text-white`). Edit `tailwind.config.js` for custom themes.
+- **TypeScript**: Strict mode—VS Code auto-detects errors.
+- **Scripts** (Add to `package.json` if missing):
+  ```json
+  {
+    "scripts": {
+      "dev": "vite",
+      "build": "tsc && vite build",
+      "preview": "vite preview",
+      "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+      "format": "prettier --write .",
+      "type-check": "tsc --noEmit",
+      "test": "vitest"
+    }
+  }
+  ```
+- **Common Tasks**:
+  - Lint: `npm run lint`
+  - Format: `npm run format`
+  - Build: `npm run build` (outputs `/dist/`)
+  - Preview: `npm run preview`
 
-Common Commands:
-- **Dev Server**: `npm run dev`
-- **Build for Production**: `npm run build` (outputs to `/dist/`)
-- **Preview Build**: `npm run preview` (simulates production at http://localhost:4173)
-- **Type Check**: `npm run type-check`
+## 📂 Project Structure
+```
+InnovateX-main/
+├── public/          # Static assets (images, favicon)
+├── src/
+│   ├── App.tsx      # Main router + routes
+│   ├── components/  # Reusable UI/pages
+│   │   ├── Lab/     # Projects module
+│   │   │   ├── main.tsx     # Lab home (projects list)
+│   │   │   ├── ProjectsList/main.tsx  # Reusable card component
+│   │   │   └── Projects/     # Self-contained projects
+│   │   │       ├── AiStudyBuddy.tsx  # Data export + details component
+│   │   │       └── SchoolPortal.tsx
+│   │   ├── ui/      # Shared UI (Navbar, etc.)
+│   │   └── ...      # Other pages (About, Contact, etc.)
+│   ├── index.css    # Global styles
+│   └── main.tsx     # Entry point
+├── tailwind.config.js  # Tailwind setup
+├── vite.config.ts      # Vite config
+├── vercel.json         # Vercel routing
+└── ...                 # Configs (tsconfig, eslint)
+```
 
-## 📦 Building for Production
-1. Run:
+### Lab Module Details
+- **List View** (`/lab`): Grid of project cards (title, shortDesc, tech badges, date, image) from self-contained data in `Projects/*.tsx`.
+- **Details View** (`/lab/projects/:slug`): Full info (desc, team, resources links, custom sections like features/how-it-works). Navbar + back button.
+- **Adding Projects**: 
+  1. Create new TSX in `Projects/` (copy AiStudyBuddy.tsx, update `projectData` + custom JSX).
+  2. Import data in Lab/main.tsx: `import { projectData as newData } from "./Projects/NewProject";` + add to `allProjectsData`.
+  3. Add route in App.tsx: `import NewProject from './components/Lab/Projects/NewProject';` + switch case.
+- **Customization**: Edit per-project TSX (e.g., add videos). Images in `public/lab/`.
+
+## 📦 Building & Deployment
+1. **Build**:
    ```bash
    npm run build
    ```
-   - Outputs optimized static files to `/dist/` (minified JS/CSS, hashed assets).
-   - Size: ~1-2MB (gzip'd)—fast loading.
+   - Outputs `/dist/` (minified, hashed assets).
 
-2. Preview:
+2. **Preview**:
    ```bash
    npm run preview
    ```
-   - Serves `/dist/` locally. Test responsiveness and routes.
 
-3. Verify: Open `/dist/index.html` in browser (or use preview server). Ensure no console errors.
+3. **Deploy to Vercel** (Auto from GitHub):
+   - Connect repo in Vercel dashboard.
+   - Framework: Vite. Build: `npm run build`. Output: `dist`.
+   - Push to `main` → Auto-deploys. Preview branches for PRs.
 
-## 🚀 Deployment to Vercel (End-to-End Guide)
-Vercel is ideal for this static React app—free, auto-deploys on Git pushes, custom domains, and global CDN.
-
-### Step 1: Prepare GitHub Repo
-1. **Initialize Git** (if not already):
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: InnovateX website"
-   ```
-
-2. **Create GitHub Repo**:
-   - Go to [github.com/new](https://github.com/new).
-   - Name: `InnovateX` (or similar).
-   - Public (free). No README/.gitignore (we have them).
-
-3. **Push to GitHub**:
-   ```bash
-   git remote add origin https://github.com/Suryanshu-Nabheet/InnovateX.git  # Your username/repo
-   git branch -M main
-   git push -u origin main
-   ```
-
-### Step 2: Connect to Vercel
-1. **Sign Up/Login**: At [vercel.com](https://vercel.com), use GitHub (imports repos automatically).
-
-2. **Import Project**:
-   - Click "New Project" → Import Git Repository.
-   - Select your `InnovateX` repo.
-   - Framework Preset: "Vite" (auto-detected).
-   - Root Directory: `./` (default).
-   - Build Command: `npm run build` (default).
-   - Output Directory: `dist` (as in vercel.json).
-   - Install Command: `npm install` (default).
-   - Environment Variables: None needed.
-
-3. **Deploy**:
-   - Click "Deploy". Vercel builds and deploys (~1-2 min).
-   - Get URL: e.g., `innovatex-abc123.vercel.app`.
-   - Custom Domain (Optional): In Vercel dashboard → Settings → Domains (free subdomain or add yourdomain.com).
-
-### Step 3: Auto-Deploys & Updates
-- **Git Workflow**: Edit code → `git add .` → `git commit -m "Update leadership bios"` → `git push`.
-- Vercel auto-detects pushes to `main` → rebuilds/deploys (live in <1 min).
-- Preview Branches: Push to `dev` branch → Vercel creates preview URL (e.g., innovatex-dev-xyz.vercel.app).
-
-### Step 4: Post-Deployment Checks
-- **Test Live Site**:
-  - Home: Hero, sections load.
-  - Routes: /about, /contact, /leadership (no 404s—thanks to vercel.json).
-  - Mobile: Resize browser or use dev tools.
-  - Favicon/Assets: Gyan_Niketan.png shows in tab; images load.
-- **Analytics/Monitoring**: Vercel dashboard shows traffic, errors. Add Google Analytics via `<script>` in `index.html` if needed.
-- **HTTPS**: Automatic on Vercel (secure by default).
-
-### Troubleshooting
-- **Build Fails**: Check Vercel logs (e.g., missing deps? Run `npm install` locally first).
-- **Routing Issues**: Ensure vercel.json rewrites to `/index.html`.
-- **Assets Missing**: Paths like `/Public/...` must be absolute (Vite handles).
-- **Large Builds**: Optimize images (e.g., compress Gyan_Niketan.png).
-- **Custom Domain**: Point DNS (A record to 76.76.21.21 for Vercel).
-- **Support**: Vercel docs [vercel.com/docs](https://vercel.com/docs) or email support@vercel.com.
+See full guide in original Readme (or Vercel docs).
 
 ## 🤝 Contributing
-- Fork the repo → Make changes → PR to `main`.
-- Follow: Semantic commits (e.g., "feat: add contact map"), no breaking changes without tests.
-- Issues: Report bugs/feature requests on GitHub.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Welcome: Bug fixes, new projects, docs, tests.
+
+- Fork → Branch (e.g., `feat/new-project`) → Commit (semantic: "feat: add cyber game project") → PR.
+- Run `npm run lint && npm run format` before push.
+- Issues: Use GitHub templates (bug/feature).
+
+## 📄 License
+MIT License - See [LICENSE](LICENSE) for details. Free for educational/non-commercial use.
 
 ## 🙏 Acknowledgments
-- Built by Suryanshu Nabheet (Leader, InnovateX).
-- Icons: Lucide React.
-- Hosting: Vercel.
+- Built by Suryanshu Nabheet (InnovateX Leader).
+- Icons: [Lucide React](https://lucide.dev).
+- Hosting: [Vercel](https://vercel.com).
 - School: Gyan Niketan, Patna.
-
-Questions? Contact suryanshunab@gmail.com or open an issue.
+- Contributors: [Add your name!](https://github.com/Suryanshu-Nabheet/InnovateX/graphs/contributors)
 
 <div align="center">
-  <img src="./Public/Projects_lab.jpg" alt="Lab Projects" width="600"/>
+  <img src="./public/Projects_lab.jpg" alt="Lab Projects Grid" width="600"/>
 </div>
+
+Questions? Open an issue or email suryanshunabheet@gmail.com.
