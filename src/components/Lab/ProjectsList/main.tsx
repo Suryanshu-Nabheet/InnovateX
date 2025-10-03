@@ -3,7 +3,48 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "../ui/navbar"; // Adjust path if ui folder differs
 import { Monitor } from "lucide-react";
-import { ProjectCard } from "./ProjectsList/main"; // Shared card structure
+
+// Reusable Project Card (Box Structure for List - No Data Import)
+export const ProjectCard = ({
+  project,
+}: {
+  project: {
+    id: string;
+    slug: string;
+    title: string;
+    shortDesc: string;
+    tech: string[];
+    date: string;
+    image?: string;
+  };
+}) => (
+  <motion.div
+    whileHover={{ scale: 1.05, y: -5 }}
+    className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer group"
+  >
+    <img
+      src={project.image || "https://via.placeholder.com/400x300?text=No+Image"}
+      alt={project.title}
+      className="w-full h-48 object-cover rounded-xl mb-4 group-hover:opacity-90 transition-opacity"
+      onError={(e) => {
+        e.currentTarget.src = "https://via.placeholder.com/400x300?text=No+Image";
+      }}
+    />
+    <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+    <p className="text-gray-300 mb-4 line-clamp-2">{project.shortDesc}</p>
+    <div className="flex flex-wrap gap-2 mb-4">
+      {project.tech.map((t) => (
+        <span
+          key={t}
+          className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm"
+        >
+          {t}
+        </span>
+      ))}
+    </div>
+    <span className="text-xs text-gray-500 block">Date: {project.date}</span>
+  </motion.div>
+);
 
 // Import project data from each self-contained file (add more as you create TSX)
 import { projectData as aiData } from "./Projects/AiStudyBuddy";
@@ -37,13 +78,22 @@ const Lab = () => {
               <motion.p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light mb-8">
                 Discover innovative student-led creations from InnovateX.
               </motion.p>
-              <motion.div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-8" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.5 }} />
+              <motion.div
+                className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-8"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5 }}
+              />
             </motion.div>
 
             {/* Projects Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {allProjectsData.map((project) => (
-                <Link key={project.id} to={`/lab/projects/${project.slug}`} className="block">
+                <Link
+                  key={project.id}
+                  to={`/lab/projects/${project.slug}`}
+                  className="block"
+                >
                   <ProjectCard project={project} />
                 </Link>
               ))}

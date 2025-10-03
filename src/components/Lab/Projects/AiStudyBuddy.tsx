@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Navbar } from "../../ui/navbar"; // Relative path from Projects to ui
+import { Navbar } from "../../ui/navbar"; // Correct path from Projects/ to ui/
 import { ArrowLeft, Code, FileText, Link as LinkIcon } from "lucide-react";
 
-// Self-Contained Data (for list cards)
+// Self-Contained Data (for list cards) - External URL for thumbnail
 export const projectData = {
   id: "1",
   slug: "ai-study-buddy",
@@ -12,7 +12,7 @@ export const projectData = {
   shortDesc: "An AI-powered chatbot to help students with homework and coding queries.",
   tech: ["Python", "TensorFlow", "React"],
   date: "2025-01-15",
-  image: "/lab/ai-study-buddy.jpg",
+  image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External AI/chatbot thumbnail
   // Optional for details (not used in cards)
   desc: "Developed by Class XII students, this chatbot uses natural language processing to answer questions on math, science, and CS basics. Trained on school curriculum data for personalized learning.",
   team: ["Suryanshu Nabheet", "Rakshit Ranjan"],
@@ -21,7 +21,7 @@ export const projectData = {
   demoLink: "https://ai-study-buddy-demo.vercel.app"
 } as const;
 
-// Details Component (Full View)
+// Details Component (Full View - No image, blue theme)
 const AiStudyBuddyDetails = () => {
   const navigate = useNavigate();
   const project = projectData; // Use self-contained data
@@ -32,7 +32,6 @@ const AiStudyBuddyDetails = () => {
       <main className="pt-20 md:pt-24">
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="absolute inset-0 opacity-20">
-            {/* Changed to blue theme (matching other pages) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
           </div>
 

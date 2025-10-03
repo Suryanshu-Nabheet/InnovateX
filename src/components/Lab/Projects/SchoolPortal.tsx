@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Navbar } from "../../ui/navbar";
+import { Navbar } from "../../ui/navbar"; // Correct path
 import { ArrowLeft, Code, FileText, Link as LinkIcon } from "lucide-react";
 
-// Self-Contained Data
+// Self-Contained Data - External URL for thumbnail
 export const projectData = {
   id: "2",
   slug: "school-portal",
@@ -12,7 +12,7 @@ export const projectData = {
   shortDesc: "A secure web dashboard for students to access grades, assignments, and announcements.",
   tech: ["React", "Node.js", "MongoDB"],
   date: "2025-02-20",
-  image: "/lab/school-portal.jpg",
+  image: "https://images.unsplash.com/photo-1551836022-4d8b3d715f5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80", // External dashboard/school portal thumbnail
   // Optional for details
   desc: "Built with modern web tech, this portal integrates with school databases for real-time updates. Features user auth, responsive design, and admin panels for teachers.",
   team: ["Student Team A"],
@@ -21,7 +21,7 @@ export const projectData = {
   demoLink: "https://school-portal-demo.vercel.app"
 } as const;
 
-// Details Component
+// Details Component (No image, blue theme)
 const SchoolPortalDetails = () => {
   const navigate = useNavigate();
   const project = projectData;
@@ -32,7 +32,6 @@ const SchoolPortalDetails = () => {
       <main className="pt-20 md:pt-24">
         <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="absolute inset-0 opacity-20">
-            {/* Changed to blue theme (matching other pages) */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
           </div>
 
