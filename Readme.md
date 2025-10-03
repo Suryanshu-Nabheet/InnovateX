@@ -205,6 +205,42 @@ InnovateX/
 
 ---
 
+## Lab Projects Structure (Modular JSON-Driven)
+
+The Lab page (`/lab`) showcases CS projects in a clean grid with modals for details. Everything is self-contained—no external deps beyond Framer/Tailwind.
+
+### File Structure
+- `src/components/Lab/main.tsx`: Main Lab page (hero, Navbar, uniform grid boxes via ProjectCard, modal overlay). Imports JSON for data; uses shared ProjectDetails for modals.
+- `src/components/Lab/projects.json`: Central data source (array of projects). Each object: `id`, `title`, `shortDesc` (grid summary), `tech` (tags), `date`, `image` (thumbnail), `details` (array of brief info strings for modal).
+- `src/components/Lab/Projects/main.tsx`: Universal component (ProjectDetails)—renders structured modal (title, image, tech, numbered "How It Works" from details array, resources).
+
+### How It Works
+- **Grid (Short Summary)**: main.tsx maps JSON array to fixed-size cards (520px uniform, stagger animation, hover scale/blue shadow, lazy images).
+- **Modal (Brief Info)**: Click card → Overlay modal with ProjectDetails (JSON-driven: Overview from shortDesc, list from details array, dynamic GitHub/demo links).
+- **No App.tsx Impact**: All logic in Lab—App.tsx routes only (`<Route path="/lab" element={<Lab />} />`).
+
+### Adding a New Project (2 Steps - No Code Edits)
+1. **Edit `projects.json`** (push new object to array):
+   ```json
+   {
+     "id": "new-project",
+     "title": "New CS Project",
+     "shortDesc": "Brief grid description.",
+     "tech": ["React", "Node.js"],
+     "date": "2025-06-01",
+     "image": "https://images.unsplash.com/... (400x300 URL)",
+     "details": [
+       "Info 1: First feature description.",
+       "Info 2: Second detail.",
+       "Info 3: How it integrates."
+     ]
+   }
+   ```
+
+2. **Enjoy**: New project auto-appears in Lab grid. Click → See details in modal.
+
+---
+
 ## ➕ Adding Projects
 Extend the Lab effortlessly:
 
@@ -369,4 +405,19 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ---
 
 *Last Updated: October 3, 2025 | Questions? [Open an Issue](https://github.com/Suryanshu-Nabheet/InnovateX/issues/new) 🚀*
+
+---
+
+### Additional Notes
+- **Why Perfect?**: JSON = Zero maintenance (add projects via data, not files). Universal structure = Consistent modals (no per-project code). Lab self-contained (imports here only).
+- **Testing**:
+  1. Delete old .tsx → Save JSON + [main.tsx](http://_vscodecontentref_/15) files.
+  2. `npm run dev` → `/lab` → 4 uniform cards (stagger, hover). Click AI: Modal (title blue, image, tech, numbered details 1-4).
+  3. Add to JSON (e.g., 5th project) → Reload: Grid grows (lg:3 cols).
+  4. Mobile: Responsive (stacks, modal full-height).
+  5. Console/Network: No errors (JSON parses clean).
+- **Edge Cases**: Empty JSON → Empty grid (no crash). Invalid image → Placeholder. Long details → Scrollable modal.
+- **If Issues**: Ensure Vite config allows JSON imports (default: Yes). Share error for tweaks.
+
+Structure flawless—easy to scale! If more projects in JSON or README tweaks, share. 🚀
 

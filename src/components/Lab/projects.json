@@ -1,0 +1,58 @@
+[
+  {
+    "id": "ai-study-buddy",
+    "title": "AI Study Buddy",
+    "shortDesc": "Personalized AI tutor that adapts to your learning style with quizzes and explanations.",
+    "tech": ["React", "TensorFlow.js", "Node.js", "Python"],
+    "date": "2025-03-15",
+    "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "details": [
+      "Uses machine learning to create custom study plans based on quiz performance.",
+      "Analyzes learning style and suggests interactive resources like flashcards.",
+      "Real-time progress tracking with analytics dashboard for students.",
+      "Integrates TensorFlow.js for browser-based AI without server dependency."
+    ]
+  },
+  {
+    "id": "school-portal",
+    "title": "School Portal",
+    "shortDesc": "Modern web portal for student attendance, grades, and announcements—streamlining school admin.",
+    "tech": ["React", "Firebase", "Tailwind CSS", "TypeScript"],
+    "date": "2025-02-20",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "details": [
+      "Responsive dashboard for teachers to post grades and announcements securely.",
+      "Students access personalized views with real-time notifications via Firebase.",
+      "Reduces paperwork by 70% with mobile-friendly attendance tracking.",
+      "Uses TypeScript for type-safe code and Tailwind for rapid styling."
+    ]
+  },
+  {
+    "id": "weather-dashboard",
+    "title": "Weather Dashboard",
+    "shortDesc": "Real-time weather tracker with forecasts, maps, and alerts—using open APIs for global data.",
+    "tech": ["React", "OpenWeatherMap API", "Chart.js", "Tailwind CSS"],
+    "date": "2025-03-25",
+    "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "details": [
+      "Search any city for hourly forecasts and interactive temperature charts.",
+      "Integrates OpenWeatherMap API for accurate global data and alerts.",
+      "Visualizes trends with Chart.js for humidity, wind, and precipitation.",
+      "Push notifications for severe weather—built for API learning and data viz."
+    ]
+  },
+  {
+    "id": "chatbot-assistant",
+    "title": "Chatbot Assistant",
+    "shortDesc": "AI-powered school helper for queries on schedules, homework, and resources—conversational interface.",
+    "tech": ["JavaScript", "Dialogflow", "React", "WebSockets"],
+    "date": "2025-05-05",
+    "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80",
+    "details": [
+      "Conversational UI for instant answers on homework and school schedules.",
+      "Dialogflow handles NLP to process queries and integrate with calendars.",
+      "Real-time responses via WebSockets for seamless chat experience.",
+      "Trained on FAQs—ideal for student support without human intervention."
+    ]
+  }
+]

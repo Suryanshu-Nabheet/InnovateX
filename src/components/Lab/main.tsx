@@ -2,18 +2,10 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "../ui/navbar";
 import { Monitor, X } from "lucide-react";
+import projectsData from "./projects.json";  // All data (short + details)
+import { ProjectDetails } from "./Projects/main";  // Universal details structure
 
-import { projectData as aiData, ProjectDetails as AiDetails } from "./Projects/AiStudyBuddy";
-import { projectData as portalData, ProjectDetails as PortalDetails } from "./Projects/SchoolPortal";
-import { projectData as weatherData, ProjectDetails as WeatherDetails } from "./Projects/WeatherDashboard";
-import { projectData as chatData, ProjectDetails as ChatDetails } from "./Projects/ChatbotAssistant";
-
-const allProjectsData = [
-  { ...aiData, Details: AiDetails },
-  { ...portalData, Details: PortalDetails },
-  { ...weatherData, Details: WeatherDetails },
-  { ...chatData, Details: ChatDetails }
-];
+const allProjectsData = projectsData;  // Direct array from JSON (add here if needed)
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -53,7 +45,6 @@ const ProjectCard = ({
 }: {
   project: {
     id: string;
-    slug: string;
     title: string;
     shortDesc: string;
     tech: string[];
@@ -95,8 +86,6 @@ const Lab = () => {
 
   const openModal = (project: any) => setSelectedProject(project);
   const closeModal = () => setSelectedProject(null);
-
-  const DetailsComponent = selectedProject?.Details || null;
 
   return (
     <div className="min-h-screen bg-black text-white antialiased">
@@ -170,7 +159,7 @@ const Lab = () => {
               >
                 <X size={24} />
               </button>
-              {DetailsComponent && <DetailsComponent />}
+              <ProjectDetails project={selectedProject} />
             </motion.div>
           </motion.div>
         )}
