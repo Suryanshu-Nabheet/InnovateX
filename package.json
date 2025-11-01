@@ -11,6 +11,7 @@
     "deploy": "npm run build && vite build --outDir dist && echo 'Deploy dist/ to Vercel/Netlify'"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.18.0",
     "@supabase/supabase-js": "^2.57.4",
     "@tabler/icons-react": "^3.0.0",
     "clsx": "^2.1.1",
@@ -24,6 +25,7 @@
     "react-lazyload": "^3.2.1",
     "react-router-dom": "^7.9.3",
     "tailwind-merge": "^2.5.2",
+    "three": "^0.162.0",
     "vite-imagetools": "^8.0.0",
     "vite-plugin-pwa": "^1.0.3"
   },

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navbar } from "../ui/navbar";
+import { PageLayout } from "@/components/layouts/PageLayout";
 import { Monitor, X } from "lucide-react";
-import projectsData from "./projects.json";  // All data (short + details)
-import { ProjectDetails } from "./Projects/main";  // Universal details structure
+import projectsData from "./projects.json";
+import { ProjectDetails } from "./Projects/main";
+import { Project } from "@/types";
 
 const allProjectsData = projectsData;  // Direct array from JSON (add here if needed)
 
@@ -22,8 +23,7 @@ const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.4, ease: "easeOut" } 
+    y: 0
   }
 };
 
@@ -35,7 +35,7 @@ const modalVariants = {
 
 const modalContentVariants = {
   hidden: { scale: 0.8, opacity: 0, y: 50 },
-  visible: { scale: 1, opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+  visible: { scale: 1, opacity: 1, y: 0 },
   exit: { scale: 0.8, opacity: 0, y: 50 }
 };
 
@@ -43,18 +43,14 @@ const ProjectCard = ({
   project,
   onClick,
 }: {
-  project: {
-    id: string;
-    title: string;
-    shortDesc: string;
-    tech: string[];
-    date: string;
-    image?: string;
-  };
+  project: Project;
   onClick: () => void;
 }) => (
   <motion.div
     variants={cardVariants}
+    initial="hidden"
+    animate="visible"
+    transition={{ duration: 0.4, ease: "easeOut" }}
     whileHover={{ scale: 1.05, y: -5 }}
     onClick={onClick}
     className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer group h-[520px] flex flex-col"
@@ -82,16 +78,14 @@ const ProjectCard = ({
 );
 
 const Lab = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const openModal = (project: any) => setSelectedProject(project);
+  const openModal = (project: Project) => setSelectedProject(project);
   const closeModal = () => setSelectedProject(null);
 
   return (
-    <div className="min-h-screen bg-black text-white antialiased">
-      <Navbar />
-      <main className="pt-20 md:pt-24">
-        <div className="relative max-w-7xl mx-auto px-6 py-20">
+    <PageLayout>
+      <div className="relative max-w-7xl mx-auto px-6 py-20">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
           </div>
@@ -136,7 +130,6 @@ const Lab = () => {
             </motion.div>
           </div>
         </div>
-      </main>
 
       <AnimatePresence>
         {selectedProject && (
@@ -150,6 +143,10 @@ const Lab = () => {
           >
             <motion.div
               variants={modalContentVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-black/90 border border-white/10 rounded-2xl p-6 relative"
               onClick={(e) => e.stopPropagation()}
             >
@@ -164,7 +161,7 @@ const Lab = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </PageLayout>
   );
 };
 

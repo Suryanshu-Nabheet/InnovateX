@@ -7,9 +7,13 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
+import { TEAM_MEMBERS } from "@/data/team";
+import { TeamMember } from "@/types";
+import { SITE_CONFIG } from "@/config";
 
 // Animated Tooltip Component
-function AnimatedTooltip({ items }: { items: Array<{ id: number; name: string; designation: string; image: string }> }) {
+function AnimatedTooltip({ items }: { items: TeamMember[] }) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
@@ -19,25 +23,21 @@ function AnimatedTooltip({ items }: { items: Array<{ id: number; name: string; d
     useTransform(x, [-100, 100], [-45, 45]),
     springConfig,
   );
-  const translateX = useSpring(
-    useTransform(x, [-100, 100], [-50, 50]),
-    springConfig,
-  );
-
-  const handleMouseMove = (event: any) => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLImageElement>) => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
 
     animationFrameRef.current = requestAnimationFrame(() => {
-      const halfWidth = event.target.offsetWidth / 2;
+      const target = event.currentTarget;
+      const halfWidth = target.offsetWidth / 2;
       x.set(event.nativeEvent.offsetX - halfWidth);
     });
   };
 
   return (
     <>
-      {items.map((item, idx) => (
+      {items.map((item) => (
         <div
           className="group relative -mr-4"
           key={item.name}
@@ -106,48 +106,8 @@ function DotBackgroundDemo() {
   );
 }
 
-const teamMembers = [
-  {
-    id: 1,
-    name: "Dr. Rajesh Kumar",
-    designation: "Lab Coordinator",
-    image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    designation: "CS Teacher",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 3,
-    name: "Amit Verma",
-    designation: "Tech Mentor",
-    image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 4,
-    name: "Sneha Patel",
-    designation: "AI Instructor",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-  },
-  {
-    id: 5,
-    name: "Vikram Singh",
-    designation: "Robotics Lead",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-  },
-  {
-    id: 6,
-    name: "Ananya Das",
-    designation: "Web Dev Expert",
-    image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
-  },
-];
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black w-full">
       <DotBackgroundDemo />
@@ -157,19 +117,21 @@ export function Hero() {
           <span className="text-blue-300 text-sm font-medium">Gyan Niketan School CS Lab</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight tracking-tight w-full mx-auto">
-          <span className="text-white">Welcome to </span>
-          <span className="text-white">Innovate</span>
-          <span style={{ color: '#0000FF' }}>X</span>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight tracking-tight w-full mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+          <LayoutTextFlip
+            text="Welcome to "
+            words={["InnovateX", "CS Lab", "Innovation Hub", "Future Tech"]}
+            duration={3000}
+          />
         </h1>
 
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed w-full">
-          Where innovation meets excellence. Our state-of-the-art computer science lab empowers students to create, learn, and shape the future of technology.
+          {SITE_CONFIG.tagline}. Our state-of-the-art computer science lab empowers students to create, learn, and shape the future of technology.
         </p>
 
         {/* Animated Tooltip Section */}
         <div className="flex flex-row items-center justify-center mb-8 w-full">
-          <AnimatedTooltip items={teamMembers} />
+          <AnimatedTooltip items={TEAM_MEMBERS} />
         </div>
 
         <div className="flex justify-center w-full">

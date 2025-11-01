@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/lib/utils";
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
@@ -68,7 +67,7 @@ export function FeaturesSectionDemo() {
 
         {/* Grid Container: Responsive grid with borders, rounded corners, and overflow hidden for clean edges. */}
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-0 border border-gray-800 rounded-2xl overflow-hidden">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <FeatureCard key={feature.title} className={feature.className}>
               <FeatureTitle>{feature.title}</FeatureTitle>
               <FeatureDescription>{feature.description}</FeatureDescription>

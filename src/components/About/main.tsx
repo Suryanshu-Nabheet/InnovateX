@@ -1,272 +1,583 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { Navbar } from '../ui/navbar'; // Correct path from About/ to ui/
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { 
+  ChevronLeft, 
+  ChevronRight, 
   Cpu, 
   Code, 
-  Monitor, 
-  Database, 
-  Globe, 
-  Smartphone, 
-  Brain, 
-  Cloud, 
+  BookOpen, 
+  Users, 
+  Award, 
+  Target, 
   Zap, 
-  Bot, 
-  Headset, 
-  Leaf, 
-  Lock 
-} from "lucide-react"; // Added all missing icons
+  Globe,
+  TrendingUp,
+  Trophy,
+  Sparkles
+} from "lucide-react";
+import { PageLayout } from "@/components/layouts/PageLayout";
+import { SITE_CONFIG } from "@/config";
+import { FEATURES } from "@/data/features";
+import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { AnimatePresence } from "framer-motion";
 
-// Inlined Timeline Component (self-contained)
-interface TimelineEntry {
-  title: string;
-  content: React.ReactNode;
-}
+const labImages = [
+  { 
+    src: "/Projects_lab.jpg",
+    year: "2024",
+    caption: "CS Lab Projects",
+    description: "Students showcasing innovative projects and collaborative coding sessions in our state-of-the-art lab."
+  },
+  {
+    src: "/Features/image-1.png",
+    year: "2024",
+    caption: "AI & Machine Learning",
+    description: "Exploring cutting-edge AI tools and machine learning frameworks for real-world applications."
+  },
+  {
+    src: "/Features/image-2.jpg",
+    year: "2024",
+    caption: "Web Development",
+    description: "Building modern web applications using React, Node.js, and full-stack technologies."
+  },
+  {
+    src: "/Features/image-3.png",
+    year: "2023",
+    caption: "Hackathon Event",
+    description: "InnovateX hackathon bringing together passionate developers to solve real-world problems."
+  },
+  {
+    src: "/Features/image-4.png",
+    year: "2023",
+    caption: "Tech Innovation",
+    description: "Students demonstrating robotics projects and IoT innovations."
+  },
+];
 
-const Timeline = ({ data }: { data: TimelineEntry[] }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
+export default function About() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hoveredOffer, setHoveredOffer] = useState<number | null>(null);
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
 
+  // Auto-advance carousel
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % labImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 10%", "end 50%"],
-  });
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % labImages.length);
+  };
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + labImages.length) % labImages.length);
+  };
 
   return (
-    <div
-      className="w-full bg-black font-sans md:px-10 relative" // Added relative for background positioning
-      ref={containerRef}
-    >
-      {/* Added Blue Blob Background (same as Contact) */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
-      </div>
+    <PageLayout>
+      <section className="bg-black min-h-screen pt-4">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)',
+          backgroundSize: '20px 20px'
+        }} />
 
-      {/* Enhanced Header: Blue & White Theme with Animation */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10 relative z-10" // Added z-10 to sit above background
-      >
-        <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-blue-500/20"> {/* Subtle blue glow container */}
-          <motion.h2 
-            className="text-lg md:text-5xl lg:text-6xl mb-6 font-bold max-w-4xl mx-auto tracking-wide"
-            whileHover={{ scale: 1.02 }}
-          >
-            <span className="text-blue-500">Computer Science</span>
-          </motion.h2>
-          <motion.p 
-            className="text-blue-300 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed font-light" // Light blue for premium feel
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Explore the evolution of computer science at Gyan Niketan – from foundational breakthroughs to cutting-edge innovations shaping tomorrow. This timeline details key milestones, their global impact, and how our school has adapted CS education to empower students.
-          </motion.p>
-          <motion.div 
-            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-6" // Blue accent divider
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          />
-        </div>
-      </motion.div>
-
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20 z-10"> {/* Added z-10 for timeline content */}
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-700 border border-neutral-600 p-2" />
-              </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-400">
-                {item.title}
-              </h3>
-            </div>
-
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-400">
-                {item.title}
-              </h3>
-              <div className="text-white dark:text-white"> {/* Ensure content is white for dark theme */}
-                {item.content}
-              </div>
-            </div>
-          </div>
-        ))}
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Header */}
           <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
-          />
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              About InnovateX CS Lab
+            </h1>
+            <p className="text-white/60 text-lg max-w-3xl mx-auto">
+              Where Innovation Meets Excellence in Computer Science Education
+            </p>
+          </motion.div>
+
+          {/* Lab Description - Top Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 mb-12"
+          >
+            <div className="md:text-center max-w-3xl mx-auto">
+              <p className="text-white/70 leading-relaxed text-base md:text-lg">
+                InnovateX at {SITE_CONFIG.school.name} is more than just a computer science lab; 
+                it is a vibrant community where innovation meets creativity, and technology drives 
+                educational excellence. Our state-of-the-art lab empowers 500+ students annually 
+                with hands-on CS education, hackathons, and industry certifications.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Photo Gallery Section */}
+          <div className="grid gap-12 mb-12">
+            {/* Main Image Display */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative aspect-square md:aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 z-10" />
+              <img
+                src={labImages[currentImageIndex].src}
+                alt={labImages[currentImageIndex].caption}
+                className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                onError={(e) => {
+                  e.currentTarget.src = "/Gyan_Niketan.png";
+                }}
+              />
+              
+              {/* Image Info Overlay */}
+              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6 bg-gradient-to-t from-black via-black/80 to-transparent z-20">
+                <div className="max-w-3xl mx-auto">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-white/90 font-semibold text-sm md:text-base">
+                      {labImages[currentImageIndex].year}
+                    </p>
+                    <div className="flex space-x-2">
+                      {labImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all ${
+                            index === currentImageIndex ? "bg-white" : "bg-white/30"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <h3 className="text-white text-lg md:text-xl font-semibold mb-1">
+                    {labImages[currentImageIndex].caption}
+                  </h3>
+                  <p className="text-white/70 text-sm md:text-base">
+                    {labImages[currentImageIndex].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={previousImage}
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/70 transition-all z-20"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-1.5 md:p-2 rounded-full bg-black/50 text-white/70 hover:text-white hover:bg-black/70 transition-all z-20"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Values Section with Canvas Reveal Effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">What We Offer</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {[
+                { icon: Code, title: "Programming", desc: "Modern languages and frameworks for full-stack development", colors: [[59, 130, 246]] },
+                { icon: Cpu, title: "AI & ML", desc: "Machine learning, data science, and AI applications", colors: [[34, 197, 94], [59, 130, 246]] },
+                { icon: BookOpen, title: "Education", desc: "Comprehensive curriculum and hands-on learning", colors: [[168, 85, 247]] },
+                { icon: Users, title: "Community", desc: "Collaborative projects and innovation hub", colors: [[236, 72, 153], [232, 121, 249]] }
+              ].map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={index}
+                    onMouseEnter={() => setHoveredOffer(index)}
+                    onMouseLeave={() => setHoveredOffer(null)}
+                    className="relative border border-white/10 group/canvas-card w-full p-4 md:p-6 rounded-xl bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-white/20"
+                  >
+                    {/* Canvas Reveal Effect - Only appears on hover */}
+                    <AnimatePresence>
+                      {hoveredOffer === index && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="h-full w-full absolute inset-0 z-0"
+                        >
+                          <CanvasRevealEffect
+                            animationSpeed={3 + index * 0.5}
+                            containerClassName="bg-black"
+                            colors={item.colors}
+                            dotSize={2}
+                          />
+                          <div className="absolute inset-0 [mask-image:radial-gradient(300px_at_center,white,transparent)] bg-black/40" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Content - Always visible */}
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                      <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover/canvas-card:bg-blue-500/20 transition-all duration-300">
+                        <Icon className="w-6 h-6 text-blue-400 group-hover/canvas-card:text-white transition-colors duration-300" />
+                      </div>
+                      <h3 className="text-white font-semibold mb-2 group-hover/canvas-card:text-white transition-colors duration-300">{item.title}</h3>
+                      <p className="text-white/60 text-sm group-hover/canvas-card:text-gray-300 transition-colors duration-300">{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Mission & Vision Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="grid md:grid-cols-2 gap-8 mb-12"
+          >
+            <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-2xl p-6 md:p-8 border border-blue-500/20">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                  <Target className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Our Mission</h3>
+              </div>
+              <p className="text-white/70 leading-relaxed">
+                Empower 500+ students annually with hands-on CS education, hackathons, and industry certifications. 
+                We foster creativity, problem-solving, and real-world impact through cutting-edge technology and 
+                collaborative learning.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-2xl p-6 md:p-8 border border-purple-500/20">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Our Vision</h3>
+              </div>
+              <p className="text-white/70 leading-relaxed">
+                To be a leading innovation hub where students transform ideas into reality. We envision a future 
+                where every student at {SITE_CONFIG.school.name} has access to world-class CS education and 
+                opportunities to shape the digital future.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Key Features Section with Canvas Reveal Effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">Lab Facilities & Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {FEATURES.map((feature, index) => {
+                const Icon = feature.icon;
+                // Define colors for each feature based on index for variety
+                const colors = [
+                  [[59, 130, 246]], // Blue
+                  [[34, 197, 94], [59, 130, 246]], // Green to Blue
+                  [[168, 85, 247]], // Purple
+                  [[236, 72, 153], [232, 121, 249]], // Pink to Purple
+                  [[251, 146, 60], [239, 68, 68]], // Orange to Red
+                  [[59, 130, 246], [168, 85, 247]], // Blue to Purple
+                ];
+                return (
+                  <div
+                    key={index}
+                    onMouseEnter={() => setHoveredFeature(index)}
+                    onMouseLeave={() => setHoveredFeature(null)}
+                    className="relative border border-white/10 group/canvas-card w-full p-6 rounded-xl bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-white/20"
+                  >
+                    {/* Canvas Reveal Effect - Only appears on hover */}
+                    <AnimatePresence>
+                      {hoveredFeature === index && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="h-full w-full absolute inset-0 z-0"
+                        >
+                          <CanvasRevealEffect
+                            animationSpeed={3 + (index % 3) * 0.5}
+                            containerClassName="bg-black"
+                            colors={colors[index % colors.length]}
+                            dotSize={2}
+                          />
+                          <div className="absolute inset-0 [mask-image:radial-gradient(300px_at_center,white,transparent)] bg-black/40" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Content - Always visible */}
+                    <div className="relative z-10">
+                      <div className="w-14 h-14 mb-4 rounded-xl bg-blue-500/10 group-hover/canvas-card:bg-blue-500/20 flex items-center justify-center transition-all duration-300">
+                        <Icon className="w-7 h-7 text-blue-400 group-hover/canvas-card:text-white transition-colors duration-300" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-2 group-hover/canvas-card:text-white transition-colors duration-300">{feature.title}</h3>
+                      <p className="text-white/60 leading-relaxed group-hover/canvas-card:text-gray-300 transition-colors duration-300">{feature.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Impact & Excellence Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">Excellence in Computer Science Education</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-xl p-6 md:p-8 border border-blue-500/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                    <Award className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Academic Excellence</h3>
+                </div>
+                <p className="text-white/70 leading-relaxed mb-4">
+                  At InnovateX, we've established a comprehensive computer science curriculum that integrates 
+                  theoretical knowledge with practical application. Our structured learning path covers 
+                  foundational programming, advanced algorithms, and modern software development practices.
+                </p>
+                <ul className="space-y-2 text-white/60 text-sm">
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
+                    <span>Comprehensive course modules from basics to advanced topics</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
+                    <span>Regular assessments and progress tracking for skill development</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
+                    <span>Industry-aligned curriculum preparing students for tech careers</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-xl p-6 md:p-8 border border-purple-500/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                    <TrendingUp className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Innovation & Research</h3>
+                </div>
+                <p className="text-white/70 leading-relaxed mb-4">
+                  Our lab serves as a hub for cutting-edge research and innovation. Students work on 
+                  real-world projects that solve practical problems, contributing to open-source communities 
+                  and building portfolio-ready applications.
+                </p>
+                <ul className="space-y-2 text-white/60 text-sm">
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                    <span>Open-source project contributions and community engagement</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                    <span>Research projects in AI, machine learning, and data science</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 flex-shrink-0" />
+                    <span>Collaborative learning environment fostering peer-to-peer knowledge sharing</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-xl p-6 md:p-8 border border-green-500/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                    <Globe className="w-6 h-6 text-green-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Industry Connections</h3>
+                </div>
+                <p className="text-white/70 leading-relaxed mb-4">
+                  Through strategic partnerships and networking, we provide students with exposure to 
+                  industry practices, mentorship opportunities, and pathways to tech careers. Our 
+                  connections help bridge the gap between academic learning and professional application.
+                </p>
+                <ul className="space-y-2 text-white/60 text-sm">
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 flex-shrink-0" />
+                    <span>Guest lectures and workshops by industry professionals</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 flex-shrink-0" />
+                    <span>Internship opportunities and career guidance programs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 flex-shrink-0" />
+                    <span>Collaboration with tech companies for real-world project exposure</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500/10 to-pink-600/5 rounded-xl p-6 md:p-8 border border-pink-500/20">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-pink-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Inclusive Learning Community</h3>
+                </div>
+                <p className="text-white/70 leading-relaxed mb-4">
+                  Diversity and inclusion are core values at InnovateX. We actively promote equal 
+                  participation across all demographics, ensuring every student has the opportunity to 
+                  excel in computer science regardless of background.
+                </p>
+                <ul className="space-y-2 text-white/60 text-sm">
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-2 flex-shrink-0" />
+                    <span>Inclusive programs encouraging participation from all student groups</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-2 flex-shrink-0" />
+                    <span>Mentorship programs pairing experienced students with newcomers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-pink-400 mt-2 flex-shrink-0" />
+                    <span>Supportive environment fostering collaborative learning and growth</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Programs Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">Programs & Curriculum</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Zap className="w-8 h-8 text-yellow-400" />
+                  <h3 className="text-xl font-semibold text-white">Core Programming</h3>
+                </div>
+                <ul className="space-y-2 text-white/70">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Python, JavaScript, TypeScript
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    React, Node.js, Full-Stack Development
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Data Structures & Algorithms
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Object-Oriented Programming
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Cpu className="w-8 h-8 text-green-400" />
+                  <h3 className="text-xl font-semibold text-white">AI & Data Science</h3>
+                </div>
+                <ul className="space-y-2 text-white/70">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Machine Learning with TensorFlow.js
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Data Analysis & Visualization
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Natural Language Processing
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    Computer Vision & Robotics
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Globe className="w-8 h-8 text-blue-400" />
+                  <h3 className="text-xl font-semibold text-white">Web Technologies</h3>
+                </div>
+                <ul className="space-y-2 text-white/70">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Frontend Development (React, Vue)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Backend Development (Node.js, Express)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Database Management (SQL, NoSQL)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    Cloud Services & Deployment
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <Trophy className="w-8 h-8 text-yellow-400" />
+                  <h3 className="text-xl font-semibold text-white">Events & Competitions</h3>
+                </div>
+                <ul className="space-y-2 text-white/70">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                    Annual Hackathons & Coding Challenges
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                    Tech Talks & Workshops
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                    Project Showcases & Exhibitions
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                    Industry Certifications & Training
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </PageLayout>
   );
-};
-
-// Small Icon Badge Component (Like Contact section: compact, premium)
-const IconBadge = ({ icon: Icon, color = "from-gray-600 to-gray-700", textColor = "text-gray-200", children }: { 
-  icon: React.ComponentType<{ className?: string; size?: number }>; 
-  color?: string; 
-  textColor?: string; 
-  children: React.ReactNode; 
-}) => (
-  <div className="flex items-start gap-4 mb-4">
-    <div className={`w-10 h-10 rounded-xl ${color} flex items-center justify-center flex-shrink-0 shadow-md`}>
-      <Icon className={`${textColor}`} size={20} />
-    </div>
-    <div className="flex-1">
-      {children}
-    </div>
-  </div>
-);
-
-// Main About Page Component (with Navbar added)
-const AboutTimeline = () => {
-  const data = [
-    {
-      title: "Past (1940s-1980s)",
-      content: (
-        <div className="text-white space-y-6"> {/* Wikipedia-style detailed content */}
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            The foundations of computer science were laid in the mid-20th century amid World War II efforts and post-war innovation. Computer science as a discipline emerged from mathematics, engineering, and physics, focusing on algorithms, computation, and information processing. At Gyan Niketan, early computing education began in the 1970s with basic programming concepts introduced in mathematics classes, evolving into dedicated computer labs by the 1980s. This period marked the shift from theoretical Turing machines to practical machines, democratizing access to technology.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Key developments included the ENIAC (1945), the first general-purpose electronic computer, which weighed 30 tons and calculated artillery trajectories. Alan Turing's 1936 theoretical work on the "Turing Machine" laid the groundwork for computability theory. The 1950s saw the birth of programming languages like FORTRAN (1957) by IBM for scientific computing, enabling complex simulations. The 1960s brought time-sharing systems and ARPANET (1969), precursor to the internet. By the 1970s, microprocessors like the Intel 4004 (1971) made computing affordable. The 1980s exploded with personal computers: IBM PC (1981), Apple Macintosh (1984) with GUI, and languages like C (1972) for system programming. At Gyan Niketan, these innovations inspired our first BASIC programming courses, fostering logical thinking among students and preparing them for a digital future.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Impact: This era transformed society from analog to digital, enabling data processing at scale. Challenges included high costs and limited accessibility, but it set the stage for global connectivity. Gyan Niketan's adoption mirrored India's growing tech sector, with early labs using donated PCs to teach 100+ students annually.
-          </p>
-          {/* Small icons like Contact: Key milestones as icon-text pairs */}
-          <div className="space-y-4">
-            <IconBadge icon={Cpu} color="from-gray-600 to-gray-700" textColor="text-gray-200">
-              <h4 className="text-white font-semibold mb-1">ENIAC (1945)</h4>
-              <p className="text-gray-400 text-sm">First programmable electronic computer, revolutionizing calculations.</p>
-            </IconBadge>
-            <IconBadge icon={Code} color="from-gray-600 to-gray-700" textColor="text-gray-200">
-              <h4 className="text-white font-semibold mb-1">FORTRAN (1957)</h4>
-              <p className="text-gray-400 text-sm">First high-level language for scientific and engineering apps.</p>
-            </IconBadge>
-            <IconBadge icon={Monitor} color="from-gray-600 to-gray-700" textColor="text-gray-200">
-              <h4 className="text-white font-semibold mb-1">IBM PC (1981)</h4>
-              <p className="text-gray-400 text-sm">Personal computing boom, making tech accessible to homes.</p>
-            </IconBadge>
-            <IconBadge icon={Database} color="from-gray-600 to-gray-700" textColor="text-gray-200">
-              <h4 className="text-white font-semibold mb-1">ARPANET (1969)</h4>
-              <p className="text-gray-400 text-sm">Foundation of the internet, enabling networked computing.</p>
-            </IconBadge>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Present (1990s-Now)",
-      content: (
-        <div className="text-white space-y-6"> {/* Detailed present-day content */}
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            The 1990s ushered in the digital revolution, with the World Wide Web (1991) by Tim Berners-Lee transforming information access. Mobile computing exploded in the 2000s: iPhone (2007) integrated touch interfaces and apps. Artificial intelligence surged in the 2010s via machine learning frameworks like TensorFlow (2015), powering tools from voice assistants to recommendation systems. Cloud computing (AWS 2006) shifted storage to scalable services. At Gyan Niketan, our lab now features modern setups with Python, JavaScript, and AI tools, supporting web development, data science, and cybersecurity courses for 500+ students yearly.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Current trends include big data (Hadoop 2006), IoT (billions of devices connected), and ethical AI debates post-ChatGPT (2022). Programming paradigms evolved: Object-oriented (Java 1995), functional (Scala), and low-code platforms. Open-source movements (Linux 1991, Git 2005) democratized development. Gyan Niketan's curriculum integrates these via hackathons and certifications, with labs equipped for collaborative coding on VS Code and Jupyter Notebooks. The COVID-19 pandemic accelerated remote learning, boosting our online CS modules.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Impact: CS drives economies (global market $500B+ in 2023), but raises privacy and job displacement concerns. Our school emphasizes inclusive education, with 40% female participation in CS clubs.
-          </p>
-          {/* Small icons: Current tools/trends */}
-          <div className="space-y-4">
-            <IconBadge icon={Globe} color="from-blue-600 to-blue-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">World Wide Web (1991)</h4>
-              <p className="text-gray-300 text-sm">Hypertext system enabling global information sharing.</p>
-            </IconBadge>
-            <IconBadge icon={Smartphone} color="from-blue-600 to-blue-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Smartphones (2007)</h4>
-              <p className="text-gray-300 text-sm">Mobile apps and ubiquitous computing.</p>
-            </IconBadge>
-            <IconBadge icon={Brain} color="from-blue-600 to-blue-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Machine Learning (2010s)</h4>
-              <p className="text-gray-300 text-sm">AI algorithms for pattern recognition and automation.</p>
-            </IconBadge>
-            <IconBadge icon={Cloud} color="from-blue-600 to-blue-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Cloud Services (2006)</h4>
-              <p className="text-gray-300 text-sm">Scalable storage and computing via AWS/Azure.</p>
-            </IconBadge>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Future (2030+)",
-      content: (
-        <div className="text-white space-y-6"> {/* Detailed future predictions */}
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Looking ahead, computer science will redefine reality through quantum computing, advanced AI, and immersive technologies. Quantum computers (e.g., IBM's 2023 prototypes) promise exponential speed for drug discovery and optimization, solving problems classical machines can't. Ethical AI frameworks will address biases, with regulations like EU AI Act (2024) shaping governance. The metaverse (post-Facebook 2021 pivot) will blend VR/AR for virtual economies and education. Sustainable tech, including green data centers, will combat CS's 2-3% global energy use.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Emerging trends: Neuromorphic computing mimicking brains, blockchain for decentralized security (beyond crypto), and edge AI for real-time IoT. By 2030, 85% of jobs may involve AI collaboration (World Economic Forum). At Gyan Niketan, we're preparing via quantum simulations in Python (Qiskit), VR labs for immersive learning, and ethics modules. Our curriculum includes blockchain projects and sustainability workshops, aiming for 100% student readiness in emerging tech.
-          </p>
-          <p className="mb-8 text-sm font-normal text-gray-300 md:text-base leading-relaxed">
-            Challenges: Cybersecurity threats (quantum-proof encryption needed), digital divide, and AI ethics. Opportunities: CS could add $15.7T to global GDP by 2030 (PwC). Gyan Niketan's vision: Equip students as innovators, with partnerships for internships in quantum/AI firms.
-          </p>
-          {/* Small icons: Future initiatives */}
-          <div className="space-y-4">
-            <IconBadge icon={Zap} color="from-purple-600 to-purple-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Quantum Computing</h4>
-              <p className="text-gray-300 text-sm">Super-fast processing for complex simulations.</p>
-            </IconBadge>
-            <IconBadge icon={Bot} color="from-purple-600 to-purple-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Ethical AI</h4>
-              <p className="text-gray-300 text-sm">Bias-free automation and human-AI collaboration.</p>
-            </IconBadge>
-            <IconBadge icon={Headset} color="from-purple-600 to-purple-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Metaverse/VR</h4>
-              <p className="text-gray-300 text-sm">Immersive virtual worlds for education and work.</p>
-            </IconBadge>
-            <IconBadge icon={Leaf} color="from-purple-600 to-purple-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Green Tech</h4>
-              <p className="text-gray-300 text-sm">Sustainable computing to reduce carbon footprint.</p>
-            </IconBadge>
-            <IconBadge icon={Lock} color="from-purple-600 to-purple-700" textColor="text-white">
-              <h4 className="text-white font-semibold mb-1">Blockchain</h4>
-              <p className="text-gray-300 text-sm">Secure, decentralized data for learning platforms.</p>
-            </IconBadge>
-          </div>
-        </div>
-      ),
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-black text-white antialiased">
-      <Navbar />
-      <main className="pt-20 md:pt-24"> {/* Top padding to avoid navbar overlap */}
-        <Timeline data={data} />
-      </main>
-    </div>
-  );
-};
-
-export default AboutTimeline;
+}

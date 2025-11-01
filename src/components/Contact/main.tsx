@@ -1,15 +1,12 @@
-import React from "react";
-import { Navbar } from "../ui/navbar"; // Correct relative path (up to components, then ui/navbar)
-import { Mail, MapPin, Phone } from 'lucide-react'; // Icons for contact info (Send removed)
+import { PageLayout } from "@/components/layouts/PageLayout";
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { CONTACT_INFO } from "@/data/contact";
 
 // Full Contacts Page Component (Form removed, real details + embedded map)
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-black text-white antialiased">
-      <Navbar /> {/* Navbar for consistency */}
-      <main className="pt-20 md:pt-24"> {/* Top padding to avoid navbar overlap */}
-        {/* Inlined Full Contact Section */}
-        <section id="contact" className="relative py-32 bg-black">
+    <PageLayout>
+      <section id="contact" className="relative py-32 bg-black">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 rounded-full filter blur-[200px]"></div>
           </div>
@@ -38,7 +35,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h4 className="text-white font-semibold mb-1">Location</h4>
-                        <p className="text-gray-400">Vitthal Complex, Ranjan path,<br />Gola Road (Danapur Cantt.),<br />Patna - 801503.</p>
+                        <p className="text-gray-400 whitespace-pre-line">{CONTACT_INFO.location}</p>
                       </div>
                     </div>
 
@@ -48,7 +45,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h4 className="text-white font-semibold mb-1">Phone</h4>
-                        <p className="text-gray-400">06115 - 235117, 235525</p>
+                        <p className="text-gray-400">{CONTACT_INFO.phone}</p>
                       </div>
                     </div>
 
@@ -58,7 +55,7 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h4 className="text-white font-semibold mb-1">Email</h4>
-                        <p className="text-gray-400">gnspatna@rediffmail.com</p>
+                        <p className="text-gray-400">{CONTACT_INFO.email}</p>
                       </div>
                     </div>
                   </div>
@@ -83,8 +80,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
-      </main>
-    </div>
+    </PageLayout>
   );
 };
 

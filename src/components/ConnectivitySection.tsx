@@ -1,34 +1,14 @@
 import { motion } from "framer-motion";
 import { WorldMap } from "./ui/world-map";
+import { MAP_DOTS, CONNECTIVITY_STATS } from "@/data/connectivity";
+import { StatsCard } from "./ui/StatsCard";
 
 export function ConnectivitySection() {
-  const mapDots = [
-    {
-      start: { lat: 25.5941, lng: 85.1376 }, // Patna
-      end: { lat: 34.0522, lng: -118.2437 }, // Los Angeles
-    },
-    {
-      start: { lat: 25.5941, lng: 85.1376 }, // Patna
-      end: { lat: 51.5074, lng: -0.1278 }, // London
-    },
-    {
-      start: { lat: 25.5941, lng: 85.1376 }, // Patna
-      end: { lat: 35.6762, lng: 139.6503 }, // Tokyo
-    },
-    {
-      start: { lat: 25.5941, lng: 85.1376 }, // Patna
-      end: { lat: -33.8688, lng: 151.2093 }, // Sydney
-    },
-    {
-      start: { lat: 25.5941, lng: 85.1376 }, // Patna
-      end: { lat: 28.6139, lng: 77.2090 }, // Delhi
-    },
-  ];
-
-  const stats = [
-    { title: "Global Network", count: "50+", desc: "Partner Institutions" },
-    { title: "Live Projects", count: "100+", desc: "Collaborative Works" },
-    { title: "Countries", count: "25+", desc: "International Reach" }
+  // Different colors for each stat card
+  const statColors = [
+    [[59, 130, 246]], // Blue for Global Network
+    [[236, 72, 153], [232, 121, 249]], // Pink to Purple for Live Projects
+    [[125, 211, 252]], // Sky blue for Countries
   ];
 
   return (
@@ -56,22 +36,25 @@ export function ConnectivitySection() {
         </p>
       </div>
       
-      <WorldMap dots={mapDots} lineColor="#0ea5e9" />
+      <WorldMap dots={MAP_DOTS} lineColor="#0ea5e9" />
 
-      {/* Stats Section */}
+      {/* Stats Section with Canvas Reveal Effect */}
       <div className="max-w-7xl mx-auto px-4 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stats.map((stat, idx) => (
+          {CONNECTIVITY_STATS.map((stat, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 + idx * 0.1 }}
-              className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
             >
-              <h3 className="text-xl font-semibold text-white mb-2">{stat.title}</h3>
-              <p className="text-4xl font-bold text-blue-500 mb-2">{stat.count}</p>
-              <p className="text-gray-400">{stat.desc}</p>
+              <StatsCard
+                title={stat.title}
+                count={stat.count}
+                desc={stat.desc}
+                colors={statColors[idx] || statColors[0]}
+                animationSpeed={3 + idx * 0.5}
+              />
             </motion.div>
           ))}
         </div>

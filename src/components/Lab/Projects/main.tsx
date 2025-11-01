@@ -1,16 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { Brain, Building2, Cloud, MessageCircle } from "lucide-react";  // Icons for projects (install lucide-react if needed)
-
-interface Project {
-  id: string;
-  title: string;
-  shortDesc: string;
-  tech: string[];
-  date: string;
-  image?: string;
-  details: string[];
-}
+import { Brain, Building2, Cloud, MessageCircle } from "lucide-react";
+import { Project } from "@/types";
 
 interface ProjectDetailsProps {
   project: Project;

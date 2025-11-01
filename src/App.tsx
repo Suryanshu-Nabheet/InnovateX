@@ -1,40 +1,18 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Navbar } from './components/ui/navbar'; // Shared Navbar (if needed in Home)
+import { Navbar } from './components/ui/navbar';
 import { Hero } from './components/Hero';
-import { FeaturesSectionDemo } from './components/FeaturesSection'; // Assuming this exists
+import { FeaturesSectionDemo } from './components/FeaturesSection';
 import { Footer } from './components/Footer';
 import { ConnectivitySection } from './components/ConnectivitySection';
-import AboutTimeline from './components/About/main';
+import About from './components/About/main';
 import ContactPage from './components/Contact/main';
 import Leadership from './components/Leadership/main';
-import Lab from './components/Lab/main'; // Grid page only
-import { TextHoverEffectWrapper } from './components/ui/text-hover-effect'; // Added import for hover effect
-
-// Error Boundary (Global)
-class ErrorBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
-  constructor(props: any) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() { return { hasError: true }; }
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) { console.error('Error:', error, errorInfo); }
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <div className="text-center p-8">
-            <h1 className="text-2xl font-bold mb-4">Something went wrong.</h1>
-            <button onClick={() => window.location.reload()} className="px-4 py-2 bg-blue-600 rounded">
-              Reload Page
-            </button>
-          </div>
-        </div>
-      );
-    }
-    return this.props.children;
-  }
-}
+import Lab from './components/Lab/main';
+import { TextHoverEffectWrapper } from './components/ui/text-hover-effect';
+import { ErrorBoundary } from './components/layouts/ErrorBoundary';
+import { LoadingFallback } from './components/layouts/LoadingFallback';
+import { ROUTES } from './constants/routes';
 
 // Home Component
 function Home() {
@@ -55,15 +33,15 @@ function Home() {
 function App() {
   return (
     <ErrorBoundary>
-      <Suspense fallback={<div className="min-h-screen bg-black text-white flex items-center justify-center">Loading...</div>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutTimeline />} /> {/* Navbar in component */}
-            <Route path="/contact" element={<ContactPage />} /> {/* Navbar in component */}
-            <Route path="/leadership" element={<Leadership />} /> {/* Navbar in component */}
-            <Route path="/lab" element={<Lab />} /> {/* Grid only - no details */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path={ROUTES.HOME} element={<Home />} />
+            <Route path={ROUTES.ABOUT} element={<About />} />
+            <Route path={ROUTES.CONTACT} element={<ContactPage />} />
+            <Route path={ROUTES.LEADERSHIP} element={<Leadership />} />
+            <Route path={ROUTES.LAB} element={<Lab />} />
+            <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
           </Routes>
         </Router>
       </Suspense>
