@@ -92,8 +92,9 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              About InnovateX CS Lab
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-white">About InnovateX </span>
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">CS Lab</span>
             </h1>
             <p className="text-white/60 text-lg max-w-3xl mx-auto">
               Where Innovation Meets Excellence in Computer Science Education

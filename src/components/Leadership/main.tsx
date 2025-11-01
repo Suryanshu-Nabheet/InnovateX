@@ -35,8 +35,9 @@ export default function Leadership() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Leadership
+            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+              <span className="text-white">InnovateX </span>
+              <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">Leadership</span>
             </h1>
             <p className="text-white/50 max-w-2xl mx-auto">
               Meet the visionary leaders of {SITE_CONFIG.school.name} and the passionate alumni leaders of InnovateX

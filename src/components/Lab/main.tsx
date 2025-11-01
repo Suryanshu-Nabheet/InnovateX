@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PageLayout } from "@/components/layouts/PageLayout";
-import { Monitor, X } from "lucide-react";
+import { X } from "lucide-react";
 import projectsData from "./projects.json";
 import { ProjectDetails } from "./Projects/main";
 import { Project } from "@/types";
@@ -145,24 +145,18 @@ const Lab = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-20"
             >
-              <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-blue-400 bg-clip-text text-transparent tracking-wide">
-                Our CS Lab <span className="text-blue-400">Projects</span>
+              <motion.h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-wide">
+                <span className="text-white">Our InnovateX </span>
+                <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">CS Lab Projects</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light mb-8"
+                className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-light"
               >
                 Discover innovative student-led creations from InnovateX.
               </motion.p>
-              <motion.div
-                className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mx-auto mb-8"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              />
-              <Monitor className="mx-auto text-blue-400" size={48} />
             </motion.div>
 
             <motion.div
