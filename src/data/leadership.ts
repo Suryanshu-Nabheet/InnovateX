@@ -17,7 +17,7 @@ export const SCHOOL_LEADERS: LeadershipProfile[] = [
     qualifications: 'M.A. (Economics), B.Ed, C.S Inter',
     bio: 'Ensuring academic excellence and maintaining the highest standards of education and student development.',
     category: 'school',
-    image: '/principal.jpg',
+    image: '/Leaders/principal.jpg',
     linkedin: 'https://www.linkedin.com/in/shailendra-mohan-jha-3710899b?originalSubdomain=in',
   },
   {
@@ -26,7 +26,7 @@ export const SCHOOL_LEADERS: LeadershipProfile[] = [
     qualifications: 'M.A. (Sociology), M.Ed',
     bio: 'Innovative pedagogy and hands-on learning to inspire curiosity and results.',
     category: 'school',
-    image: '/Ranjana kumari.png',
+    image: '/Leaders/vice-principle-mam.png',
   },
   {
     name: 'Mr. Amit Kumar',
@@ -34,7 +34,7 @@ export const SCHOOL_LEADERS: LeadershipProfile[] = [
     qualifications: 'M.A. (Geography), B.Ed, M.B.A',
     bio: 'Driving culture, discipline, and student growth through collaborative leadership.',
     category: 'school',
-    image: '/vvp.png',
+    image: '/Leaders/vice-principle.png',
     linkedin: 'https://www.linkedin.com/in/amit-sinha-a11a9b122/',
     twitter: 'https://x.com/amitsinhajharia?t=JBUj67xvgHgJk3_6Uj-4FA&s=03',
   },
