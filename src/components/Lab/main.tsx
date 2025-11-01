@@ -5,6 +5,7 @@ import { Monitor, X } from "lucide-react";
 import projectsData from "./projects.json";
 import { ProjectDetails } from "./Projects/main";
 import { Project } from "@/types";
+import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 
 const allProjectsData = projectsData;  // Direct array from JSON (add here if needed)
 
@@ -42,43 +43,89 @@ const modalContentVariants = {
 const ProjectCard = ({
   project,
   onClick,
+  isHovered,
+  onMouseEnter,
+  onMouseLeave,
+  index,
 }: {
   project: Project;
   onClick: () => void;
-}) => (
-  <motion.div
-    variants={cardVariants}
-    initial="hidden"
-    animate="visible"
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    whileHover={{ scale: 1.05, y: -5 }}
-    onClick={onClick}
-    className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:shadow-blue-500/20 transition-all duration-300 cursor-pointer group h-[520px] flex flex-col"
-  >
-    <img
-      src={project.image || "https://via.placeholder.com/400x300?text=No+Image"}
-      alt={project.title}
-      className="w-full h-48 object-cover rounded-xl mb-4 group-hover:opacity-90 transition-opacity flex-shrink-0"
-      loading="lazy"
-      onError={(e) => {
-        e.currentTarget.src = "https://via.placeholder.com/400x300?text=No+Image";
-      }}
-    />
-    <h3 className="text-xl font-bold text-white mb-2 flex-shrink-0">{project.title}</h3>
-    <p className="text-gray-300 mb-4 line-clamp-2 flex-1">{project.shortDesc}</p>
-    <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
-      {project.tech.map((t) => (
-        <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">
-          {t}
-        </span>
-      ))}
-    </div>
-    <span className="text-xs text-gray-500 block mt-auto flex-shrink-0">Date: {project.date}</span>
-  </motion.div>
-);
+  isHovered: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+  index: number;
+}) => {
+  // Define colors for each project based on index for variety
+  const colors = [
+    [[59, 130, 246]], // Blue
+    [[34, 197, 94], [59, 130, 246]], // Green to Blue
+    [[168, 85, 247]], // Purple
+    [[236, 72, 153], [232, 121, 249]], // Pink to Purple
+    [[251, 146, 60], [239, 68, 68]], // Orange to Red
+    [[59, 130, 246], [168, 85, 247]], // Blue to Purple
+    [[34, 197, 94], [168, 85, 247]], // Green to Purple
+  ];
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className="relative border border-white/10 group/canvas-card w-full p-6 rounded-2xl bg-white/5 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-white/20 cursor-pointer h-[520px] flex flex-col"
+    >
+      {/* Canvas Reveal Effect - Only appears on hover */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="h-full w-full absolute inset-0 z-0"
+          >
+            <CanvasRevealEffect
+              animationSpeed={3 + (index % 3) * 0.5}
+              containerClassName="bg-black"
+              colors={colors[index % colors.length]}
+              dotSize={2}
+            />
+            <div className="absolute inset-0 [mask-image:radial-gradient(300px_at_center,white,transparent)] bg-black/40" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Content - Always visible */}
+      <div className="relative z-10 flex flex-col h-full">
+        <img
+          src={project.image || "https://via.placeholder.com/400x300?text=No+Image"}
+          alt={project.title}
+          className="w-full h-48 object-cover rounded-xl mb-4 group-hover/canvas-card:opacity-90 transition-opacity flex-shrink-0"
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = "https://via.placeholder.com/400x300?text=No+Image";
+          }}
+        />
+        <h3 className="text-xl font-bold text-white mb-2 flex-shrink-0 group-hover/canvas-card:text-white transition-colors duration-300">{project.title}</h3>
+        <p className="text-gray-300 mb-4 line-clamp-2 flex-1 group-hover/canvas-card:text-gray-200 transition-colors duration-300">{project.shortDesc}</p>
+        <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
+          {project.tech.map((t) => (
+            <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm group-hover/canvas-card:bg-blue-600/30 group-hover/canvas-card:text-white transition-all duration-300">
+              {t}
+            </span>
+          ))}
+        </div>
+        <span className="text-xs text-gray-500 block mt-auto flex-shrink-0 group-hover/canvas-card:text-gray-400 transition-colors duration-300">Date: {project.date}</span>
+      </div>
+    </motion.div>
+  );
+};
 
 const Lab = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   const openModal = (project: Project) => setSelectedProject(project);
   const closeModal = () => setSelectedProject(null);
@@ -122,9 +169,16 @@ const Lab = () => {
               animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr"
             >
-              {allProjectsData.map((project) => (
+              {allProjectsData.map((project, index) => (
                 <div key={project.id} className="h-full">
-                  <ProjectCard project={project} onClick={() => openModal(project)} />
+                  <ProjectCard
+                    project={project}
+                    onClick={() => openModal(project)}
+                    isHovered={hoveredProject === index}
+                    onMouseEnter={() => setHoveredProject(index)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                    index={index}
+                  />
                 </div>
               ))}
             </motion.div>
