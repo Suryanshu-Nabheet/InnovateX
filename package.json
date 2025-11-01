@@ -24,6 +24,7 @@
     "react-dom": "^18.3.1",
     "react-lazyload": "^3.2.1",
     "react-router-dom": "^7.9.3",
+    "simple-icons": "^15.18.0",
     "tailwind-merge": "^2.5.2",
     "three": "^0.162.0",
     "vite-imagetools": "^8.0.0",

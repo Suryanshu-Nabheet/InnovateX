@@ -6,6 +6,7 @@ import projectsData from "./projects.json";
 import { ProjectDetails } from "./Projects/main";
 import { Project } from "@/types";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import { TechIcon } from "@/components/ui/TechIcon";
 
 const allProjectsData = projectsData;  // Direct array from JSON (add here if needed)
 
@@ -112,7 +113,8 @@ const ProjectCard = ({
         <p className="text-gray-300 mb-4 line-clamp-2 flex-1 group-hover/canvas-card:text-gray-200 transition-colors duration-300">{project.shortDesc}</p>
         <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
           {project.tech.map((t) => (
-            <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm group-hover/canvas-card:bg-blue-600/30 group-hover/canvas-card:text-white transition-all duration-300">
+            <span key={t} className="px-3 py-1.5 bg-blue-600/20 text-blue-300 rounded-full text-sm group-hover/canvas-card:bg-blue-600/30 group-hover/canvas-card:text-white transition-all duration-300 flex items-center gap-1.5">
+              <TechIcon tech={t} size={16} />
               {t}
             </span>
           ))}

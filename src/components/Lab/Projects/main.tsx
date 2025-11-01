@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Brain, Building2, Cloud, MessageCircle } from "lucide-react";
 import { Project } from "@/types";
+import { TechIcon } from "@/components/ui/TechIcon";
 
 interface ProjectDetailsProps {
   project: Project;
@@ -88,7 +89,8 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
         <h2 className="text-xl font-bold mb-3 text-white">Tech Stack</h2>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((t) => (
-            <span key={t} className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">
+            <span key={t} className="px-3 py-1.5 bg-blue-600/20 text-blue-300 rounded-full text-sm flex items-center gap-1.5">
+              <TechIcon tech={t} size={18} />
               {t}
             </span>
           ))}
@@ -103,7 +105,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
       >
         <h2 className="text-xl font-bold mb-3 text-white">How It Works</h2>
         <ol className="text-gray-300 space-y-3 list-decimal pl-6 leading-7">
-          {project.details.map((info, index) => (
+          {project.details?.map((info, index) => (
             <li key={index}>{info}</li>
           ))}
         </ol>
